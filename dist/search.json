@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/gravel/index.html",
+    "href": "posts/gravel/index.html",
+    "title": "Driveway Surfacing",
+    "section": "",
+    "text": "Estimating materials needed for a simple gravel road, like my driveway.\nBesides the compacted native substrate, a gravel road typically has three components: a layer of geotextile to prevent mixing the base with the substrate, a base layer of about 2” crushed rock to provide a foundation, and a surface layer of material that develops a hard surface. Each of the layers is 4 to 8” or so. A driveway will typically be about 12’ wide, 12 inches thick, and the surface must be sloped to prevent water pooling.\nGravel is generally ordered by weight (since the yards use scales rather than buckets). A ton of crushed rock / gravel is typically about \\(1.4 ton.yd^{-3}\\). A dump truck generally holds 22 ton, which equates to 15.7 yd. Crusher run includes the fines, and this is usally a bit heavier and variable by moisture content (best to order after a dry spell).\nA one inch layer on a 12’ wide roadway is one cubic foot per foot of roadway. Since one cubic yard is \\(27 ft^3\\), one cubic yard will cover 27 ft, and one truck will cover about 424 ft at a one inch depth, 106ft at 4”, and 71ft at 6”.\nThe formula for tons per ft length per inch thckness is:\n\\[\n\\begin{eqnarray}\nt &=& length \\times 12 \\times \\frac{thick}{12 \\times 27} \\times 1.4 \\\\\n&=& length \\times thick \\times 0.05185 \\\\\n&=& \\frac{length \\times thick}{19.28}\n\\end{eqnarray}\n\\]\nAssuming $36 / ton, the cost per foot is: \\[\n\\begin{eqnarray}\ncost &=& \\frac{length \\times thick}{19.28} \\times 36 \\\\\n&=& length \\times thick \\times 1.867\n\\end{eqnarray}\n\\]\nThis comes out to around $1500 per one hundred feet of driveway at 8” thick, plus machine time and geotextile."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Index",
+    "section": "",
+    "text": "Driveway Surfacing\n\n\n\nliving\n\n\ninfrastructure\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n2025-04-05\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n2025-04-02\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  }
+]

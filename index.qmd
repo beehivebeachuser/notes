@@ -1,0 +1,15 @@
+---
+title: "Index"
+date-format: iso
+listing:
+  contents: posts
+  page-size: 33
+  sort: "date desc"
+  fields: [title, categories, date]
+  type: grid
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: false
+---
+
