@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "build": "rm -rf dist; mkdir dist; cp src/index.html dist/"
-  }
-}
