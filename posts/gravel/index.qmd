@@ -1,6 +1,7 @@
 ---
 title: Driveway Surfacing
 subtitle: How much gravel do I need?
+date: "2022-04-02"
 categories: [living, infrastructure]
 reference-location: margin
 format:
