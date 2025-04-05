@@ -16,8 +16,7 @@ format:
   html:
     theme:
       - cosmo
-      - brand
-    css: styles.scss
+      - styles.scss
 
 execute:
   freeze: auto
