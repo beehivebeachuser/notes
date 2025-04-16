@@ -105,6 +105,10 @@ async function makeColors() {
     return colors;
 }
 
+mutable num_records = {
+    return 0;
+}
+
 pointdata = {
     const colors = await makeColors();
     const query = `SELECT repository, imlgs_number, igsn, ship_platform, sampl_device, p_investigator, latitude, longitude FROM read_parquet('${parquet_path}') WHERE latitude is not null`;
@@ -127,10 +131,11 @@ pointdata = {
             scaleByDistance: scalar,
         });
     }
+    mutable num_records = data.length;
     content.enableTracking();
     return data_table;
 }
-md`Retrieved ${pointdata.length} locations from ${parquet_path}.`;
+md`Retrieved ${num_records} locations from ${parquet_path}.`;
 ```
 
 <div id="loading_1">Loading...</div>
