@@ -9,9 +9,6 @@ project:
 
 website:
   title: "Beehive Beach Notes"
-  navbar:
-    right:
-      - about.qmd
 format:
   html:
     theme:
