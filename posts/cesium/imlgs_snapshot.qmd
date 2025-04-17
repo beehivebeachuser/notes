@@ -105,6 +105,9 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 viewof parquet_path = Inputs.text({label:"Source", value:"https://s3.beehivebeach.com/imlgs/imlgs.parquet", width:"100%", submit:true});
 data_loaded = {
+    if (num_records === 0) {
+        return "Loading ...";
+    }
     return md`Retrieved ${num_records} locations from: [${parquet_path}](https://manzt.github.io/quak/?source=${parquet_path}).`;
 }
 
