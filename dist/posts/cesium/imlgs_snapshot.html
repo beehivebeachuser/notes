@@ -72,6 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="../../site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="../../site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="../../site_libs/quarto-dashboard/components.js"></script>
+<link href="../../site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -105,41 +113,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body class="quarto-dashboard dashboard-fill fullcontent">
 
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Exploring IMLGS</a></div>
+        
+        
+      </div>
+    </div>
+</div>
+</nav>
+</header>
 <div id="quarto-search-results"></div>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Exploring IMLGS</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
 
 <p>This page renders points from a static parquet snapshot of <a href="https://www.ncei.noaa.gov/products/index-marine-lacustrine-samples">Index to Marine And Lacustrine Geological Samples (IMLGS)</a> data.</p>
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Cesium.js"></script>
-<link href="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-<style>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Widgets/widgets.css" rel="stylesheet" class="bslib-grid-item html-fill-item">
+<style class="bslib-grid-item html-fill-item">
     div.cesium-topleft {
         display: block;
         position: absolute;
@@ -152,292 +157,353 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         aspect-ratio: 1/1;
     }
 </style>
-<div id="cesiumContainer">
+<p><span><span id="ojs-element-id-1"></span></span></p>
+<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card tabset bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
 
-</div>
-<div class="cell hidden">
-<div class="sourceCode cell-code" id="cb1" data-startfrom="26" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 25;"><span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Cesium<span class="op">.</span><span class="at">Ion</span><span class="op">.</span><span class="at">defaultAccessToken</span> <span class="op">=</span> <span class="st">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwNzk3NjkyMy1iNGI1LTRkN2UtODRiMy04OTYwYWE0N2M3ZTkiLCJpZCI6Njk1MTcsImlhdCI6MTYzMzU0MTQ3N30.e70dpNzOCDRLDGxRguQCC-tRzGzA-23Xgno5lNgCeB4'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="expression">
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-1"><li class="nav-item" role="presentation"><a href="#card-tabset-1-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Table" aria-selected="true" class="nav-link active">Table</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-1-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Map" aria-selected="false" class="nav-link">Map</a></li></ul></div>
 
-</div>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb2" data-startfrom="28" data-source-offset="-217"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 27;"><span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>viewof parquet_path <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span><span class="st">"Source"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span><span class="st">"https://s3.beehivebeach.com/imlgs/imlgs.parquet"</span><span class="op">,</span> <span class="dt">width</span><span class="op">:</span><span class="st">"100%"</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span><span class="kw">true</span>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="34" data-source-offset="-33"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 33;"><span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DuckDBClient} <span class="im">from</span> <span class="st">"@observablehq/duckdb"</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a DuckDB instance</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DuckDBClient<span class="op">.</span><span class="fu">of</span>()<span class="op">;</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadData</span>(query<span class="op">,</span> params<span class="op">=</span>[]<span class="op">,</span> waiting_id<span class="op">=</span><span class="kw">null</span>) {</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Get loading indicator</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> waiter <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(waiting_id)<span class="op">;</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (waiter) {</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        waiter<span class="op">.</span><span class="at">hidden</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> {</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Run the (slow) query</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> _results <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(query<span class="op">,</span> <span class="op">...</span>params)<span class="op">;</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> _results<span class="op">;</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">catch</span> (error) {</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (waiter) {</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>            waiter<span class="op">.</span><span class="at">innerHtml</span> <span class="op">=</span> <span class="vs">`&lt;pre&gt;</span><span class="sc">${</span>error<span class="sc">}</span><span class="vs">&lt;/pre&gt;`</span><span class="op">;</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">finally</span> {</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Hide the waiter (if there is one)</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (waiter) {</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>            waiter<span class="op">.</span><span class="at">hidden</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">makeColors</span>() {</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`select distinct repository from read_parquet('</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">')`</span><span class="op">;</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(query)<span class="op">;</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> [[<span class="dv">173</span><span class="op">,</span> <span class="dv">216</span><span class="op">,</span> <span class="dv">230</span>]<span class="op">,</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">191</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">30</span><span class="op">,</span> <span class="dv">144</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">72</span><span class="op">,</span>  <span class="dv">61</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">123</span><span class="op">,</span> <span class="dv">104</span><span class="op">,</span> <span class="dv">238</span>]<span class="op">,</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">138</span><span class="op">,</span>  <span class="dv">43</span><span class="op">,</span> <span class="dv">226</span>]<span class="op">,</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">218</span><span class="op">,</span> <span class="dv">112</span><span class="op">,</span> <span class="dv">214</span>]<span class="op">,</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>  <span class="dv">20</span><span class="op">,</span> <span class="dv">147</span>]<span class="op">,</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">176</span><span class="op">,</span>  <span class="dv">48</span><span class="op">,</span>  <span class="dv">96</span>]<span class="op">,</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">220</span><span class="op">,</span>  <span class="dv">20</span><span class="op">,</span>  <span class="dv">60</span>]<span class="op">,</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">240</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>  <span class="dv">69</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">165</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">244</span><span class="op">,</span> <span class="dv">164</span><span class="op">,</span>  <span class="dv">96</span>]<span class="op">,</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">240</span><span class="op">,</span> <span class="dv">230</span><span class="op">,</span> <span class="dv">140</span>]<span class="op">,</span></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">139</span><span class="op">,</span>  <span class="dv">69</span><span class="op">,</span>  <span class="dv">19</span>]<span class="op">,</span></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">154</span><span class="op">,</span> <span class="dv">205</span><span class="op">,</span>  <span class="dv">50</span>]<span class="op">,</span></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">124</span><span class="op">,</span> <span class="dv">252</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">144</span><span class="op">,</span> <span class="dv">238</span><span class="op">,</span> <span class="dv">144</span>]<span class="op">,</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">143</span><span class="op">,</span> <span class="dv">188</span><span class="op">,</span> <span class="dv">143</span>]<span class="op">,</span></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">34</span><span class="op">,</span> <span class="dv">139</span><span class="op">,</span>  <span class="dv">34</span>]<span class="op">,</span></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">127</span>]<span class="op">,</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">139</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span>]]<span class="op">;</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> colors <span class="op">=</span> {}<span class="op">;</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> last_c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> row <span class="kw">of</span> results) {</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> c <span class="op">=</span> data[last_c]<span class="op">;</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>        last_c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>        colors[row<span class="op">.</span><span class="at">repository</span>] <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Color</span>(c[<span class="dv">0</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> c[<span class="dv">1</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> c[<span class="dv">2</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> <span class="fl">0.9</span>)<span class="op">;</span></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> colors<span class="op">;</span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>mutable num_records <span class="op">=</span> {</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>pointdata <span class="op">=</span> {</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> colors <span class="op">=</span> <span class="cf">await</span> <span class="fu">makeColors</span>()<span class="op">;</span></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`SELECT repository, imlgs_number, igsn, ship_platform, sampl_device, p_investigator, latitude, longitude FROM read_parquet('</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">') WHERE latitude is not null`</span><span class="op">;</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadData</span>(query<span class="op">,</span> []<span class="op">,</span> <span class="st">"loading_1"</span>)<span class="op">;</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data_table <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">table</span>(data)<span class="op">;</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> scalar <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">NearFarScalar</span>(<span class="fl">1.5e2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="fl">8.0e6</span><span class="op">,</span> <span class="fl">0.2</span>)<span class="op">;</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> color <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">PINK</span><span class="op">;</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> point_size <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> row <span class="kw">of</span> data) {</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>        content<span class="op">.</span><span class="at">points</span><span class="op">.</span><span class="fu">add</span>({</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">imlgs_number</span><span class="op">,</span></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>            <span class="co">// https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees</span></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>            <span class="dt">position</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">Cartesian3</span><span class="op">.</span><span class="fu">fromDegrees</span>(</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>                row<span class="op">.</span><span class="at">longitude</span><span class="op">,</span>  <span class="co">//longitude</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>                row<span class="op">.</span><span class="at">latitude</span><span class="op">,</span>   <span class="co">//latitude</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>                <span class="dv">0</span><span class="op">,</span><span class="co">//randomCoordinateJitter(10.0, 10.0), //elevation, m</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>            <span class="dt">pixelSize</span><span class="op">:</span> point_size<span class="op">,</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> colors[row<span class="op">.</span><span class="at">repository</span>]<span class="op">,</span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>            <span class="dt">scaleByDistance</span><span class="op">:</span> scalar<span class="op">,</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>    mutable num_records <span class="op">=</span> data<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>    content<span class="op">.</span><span class="fu">enableTracking</span>()<span class="op">;</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_table<span class="op">;</span></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`Retrieved </span><span class="sc">${</span>num_records<span class="sc">}</span><span class="vs"> locations from </span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">.`</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-1"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-1-1"><div class="card-body html-fill-item html-fill-container" data-title="Table">
+<div class="bslib-grid html-fill-item html-fill-container" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container" style="padding: 0px;">
+<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb1" data-startfrom="37" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>mutable selected_repo <span class="op">=</span> {</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">//return "Alfred Wegener Institut";</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>pointdata <span class="op">=</span> {</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> colors <span class="op">=</span> <span class="cf">await</span> <span class="fu">makeColors</span>()<span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">//const query = `SELECT repository, imlgs_number, igsn, ship_platform, sampl_device, p_investigator, latitude, longitude FROM read_parquet('${parquet_path}') WHERE latitude is not null`;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> params <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> query <span class="op">=</span> <span class="vs">`SELECT * FROM read_parquet('</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">') WHERE latitude is not null`</span><span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (selected_repo) {</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        query <span class="op">+=</span> <span class="st">" and repository=?"</span><span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        params<span class="op">.</span><span class="fu">push</span>(selected_repo)<span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadData</span>(query<span class="op">,</span> params<span class="op">,</span> <span class="st">"loading_1"</span>)<span class="op">;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data_table <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">table</span>(data<span class="op">,</span> {<span class="dt">rows</span><span class="op">:</span> <span class="dv">100</span>})<span class="op">;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> scalar <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">NearFarScalar</span>(<span class="fl">1.5e2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="fl">8.0e6</span><span class="op">,</span> <span class="fl">0.2</span>)<span class="op">;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> color <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">PINK</span><span class="op">;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> point_size <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> row <span class="kw">of</span> data) {</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        content<span class="op">.</span><span class="at">points</span><span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">imlgs_number</span><span class="op">,</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="co">// https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>            <span class="dt">position</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">Cartesian3</span><span class="op">.</span><span class="fu">fromDegrees</span>(</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>                row<span class="op">.</span><span class="at">longitude</span><span class="op">,</span>  <span class="co">//longitude</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>                row<span class="op">.</span><span class="at">latitude</span><span class="op">,</span>   <span class="co">//latitude</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>                <span class="dv">0</span><span class="op">,</span><span class="co">//randomCoordinateJitter(10.0, 10.0), //elevation, m</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>            <span class="dt">pixelSize</span><span class="op">:</span> point_size<span class="op">,</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> colors[row<span class="op">.</span><span class="at">repository</span>]<span class="op">,</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>            <span class="dt">scaleByDistance</span><span class="op">:</span> scalar<span class="op">,</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    mutable num_records <span class="op">=</span> data<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    content<span class="op">.</span><span class="fu">enableTracking</span>()<span class="op">;</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_table<span class="op">;</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-1-1" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-4" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-5" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-6" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-7" data-nodetype="expression">
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-1-2" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
 </div>
-<div id="loading_1">
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-1-2"><div class="card-body html-fill-item html-fill-container" data-title="Map">
+<div class="bslib-grid html-fill-item html-fill-container" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div id="loading_1" class="html-fill-item html-fill-container">
 Loading…
 </div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="146" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 145;"><span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">createShowPrimitive</span>(viewer) {</span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">function</span>(movement) {</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Get the point at the mouse end position</span></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> selectPoint <span class="op">=</span> viewer<span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="fu">pick</span>(movement<span class="op">.</span><span class="at">endPosition</span>)<span class="op">;</span>        </span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Clear the current selection, if there is one and it is different to the selectPoint</span></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">!==</span> <span class="kw">null</span>) {</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>            <span class="co">//console.log(`selected.p ${viewer.currentSelection}`)</span></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (Cesium<span class="op">.</span><span class="fu">defined</span>(selectPoint) <span class="op">&amp;&amp;</span> selectPoint <span class="op">!==</span> viewer<span class="op">.</span><span class="at">currentSelection</span>) {</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>                <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`selected.p 2 </span><span class="sc">${</span>viewer<span class="op">.</span><span class="at">currentSelection</span><span class="sc">}</span><span class="vs">`</span>)</span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">pixelSize</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineColor</span> <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">TRANSPARENT</span><span class="op">;</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">outlineWidth</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>        <span class="co">// If selectPoint is valid and no currently selected point</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (Cesium<span class="op">.</span><span class="fu">defined</span>(selectPoint) <span class="op">&amp;&amp;</span> selectPoint<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">"primitive"</span>)) {</span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>            <span class="co">//console.log(`showPrimitiveId ${selectPoint.id}`);</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> carto <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Cartographic</span><span class="op">.</span><span class="fu">fromCartesian</span>(selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">position</span>)</span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">position</span> <span class="op">=</span> selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">position</span><span class="op">;</span></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">show</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>            <span class="co">//viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">text</span> <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>selectPoint<span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">pixelSize</span> <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineColor</span> <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">YELLOW</span><span class="op">;</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineWidth</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> selectPoint<span class="op">;</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">show</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>        }            </span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CView {</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span>(target) {</span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Viewer</span>(</span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>            target<span class="op">,</span> {</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>                <span class="dt">timeline</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>                <span class="dt">animation</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>                <span class="dt">baseLayerPicker</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>                <span class="dt">fullscreenElement</span><span class="op">:</span> target<span class="op">,</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>                <span class="dt">terrain</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">fromWorldTerrain</span>()</span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>            })<span class="op">;</span></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">point_size</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">n_points</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>        <span class="co">// https://cesium.com/learn/cesiumjs/ref-doc/PointPrimitiveCollection.html</span></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">points</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">PointPrimitiveCollection</span>()<span class="op">;</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="at">primitives</span><span class="op">.</span><span class="fu">add</span>(<span class="kw">this</span><span class="op">.</span><span class="at">points</span>)<span class="op">;</span></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pointLabel</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">entities</span><span class="op">.</span><span class="fu">add</span>({</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> {</span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>            <span class="dt">show</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showBackground</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>            <span class="dt">font</span><span class="op">:</span> <span class="st">"14px monospace"</span><span class="op">,</span></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>            <span class="dt">horizontalOrigin</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">HorizontalOrigin</span><span class="op">.</span><span class="at">LEFT</span><span class="op">,</span></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>            <span class="dt">verticalOrigin</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">VerticalOrigin</span><span class="op">.</span><span class="at">BOTTOM</span><span class="op">,</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>            <span class="dt">pixelOffset</span><span class="op">:</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Cartesian2</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>            <span class="co">// this attribute will prevent this entity clipped by the terrain</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>            <span class="dt">disableDepthTestDistance</span><span class="op">:</span> <span class="bu">Number</span><span class="op">.</span><span class="cn">POSITIVE_INFINITY</span><span class="op">,</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>            <span class="dt">text</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pickHandler</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">ScreenSpaceEventHandler</span>(<span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="at">canvas</span>)<span class="op">;</span></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Can also do this rather than wait for the points to be generated</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>        <span class="co">//this.pickHandler.setInputAction(createShowPrimitive(this), Cesium.ScreenSpaceEventType.MOUSE_MOVE);</span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enableTracking</span>() {</span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pickHandler</span><span class="op">.</span><span class="fu">setInputAction</span>(<span class="fu">createShowPrimitive</span>(<span class="kw">this</span>)<span class="op">,</span> Cesium<span class="op">.</span><span class="at">ScreenSpaceEventType</span><span class="op">.</span><span class="at">MOUSE_MOVE</span>)<span class="op">;</span></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> <span class="kw">new</span> <span class="fu">CView</span>(<span class="st">"cesiumContainer"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
+<div id="cesiumContainer" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="cell hidden html-fill-item html-fill-container" title="Map">
+<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb2" data-startfrom="86" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>Cesium<span class="op">.</span><span class="at">Ion</span><span class="op">.</span><span class="at">defaultAccessToken</span> <span class="op">=</span> <span class="st">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwNzk3NjkyMy1iNGI1LTRkN2UtODRiMy04OTYwYWE0N2M3ZTkiLCJpZCI6Njk1MTcsImlhdCI6MTYzMzU0MTQ3N30.e70dpNzOCDRLDGxRguQCC-tRzGzA-23Xgno5lNgCeB4'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-1" data-nodetype="expression" class="html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
+<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb3" data-startfrom="88" data-source-offset="-217"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 87;"><span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>viewof parquet_path <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span><span class="st">"Source"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span><span class="st">"https://s3.beehivebeach.com/imlgs/imlgs.parquet"</span><span class="op">,</span> <span class="dt">width</span><span class="op">:</span><span class="st">"100%"</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span><span class="kw">true</span>})<span class="op">;</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>data_loaded <span class="op">=</span> {</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">md</span><span class="vs">`Retrieved </span><span class="sc">${</span>num_records<span class="sc">}</span><span class="vs"> locations from: [</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">](https://manzt.github.io/quak/?source=</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">).`</span><span class="op">;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="co">// Import Observable's libraries</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DuckDBClient} <span class="im">from</span> <span class="st">"@observablehq/duckdb"</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a DuckDB instance</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DuckDBClient<span class="op">.</span><span class="fu">of</span>()<span class="op">;</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadData</span>(query<span class="op">,</span> params<span class="op">=</span>[]<span class="op">,</span> waiting_id<span class="op">=</span><span class="kw">null</span>) {</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Get loading indicator</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> waiter <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(waiting_id)<span class="op">;</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (waiter) {</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>        waiter<span class="op">.</span><span class="at">hidden</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> {</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Run the (slow) query</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>        <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(query)<span class="op">;</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>        <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(params)<span class="op">;</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>        <span class="co">//const _results = await db.query(query, ...params);</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> _results <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(query<span class="op">,</span> params)<span class="op">;</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> _results<span class="op">;</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">catch</span> (error) {</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (waiter) {</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>            waiter<span class="op">.</span><span class="at">innerHtml</span> <span class="op">=</span> <span class="vs">`&lt;pre&gt;</span><span class="sc">${</span>error<span class="sc">}</span><span class="vs">&lt;/pre&gt;`</span><span class="op">;</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">finally</span> {</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Hide the waiter (if there is one)</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (waiter) {</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>            waiter<span class="op">.</span><span class="at">hidden</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">makeColors</span>() {</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`select distinct repository from read_parquet('</span><span class="sc">${</span>parquet_path<span class="sc">}</span><span class="vs">')`</span><span class="op">;</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(query)<span class="op">;</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> [[<span class="dv">173</span><span class="op">,</span> <span class="dv">216</span><span class="op">,</span> <span class="dv">230</span>]<span class="op">,</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">191</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">30</span><span class="op">,</span> <span class="dv">144</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">72</span><span class="op">,</span>  <span class="dv">61</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">123</span><span class="op">,</span> <span class="dv">104</span><span class="op">,</span> <span class="dv">238</span>]<span class="op">,</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">138</span><span class="op">,</span>  <span class="dv">43</span><span class="op">,</span> <span class="dv">226</span>]<span class="op">,</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">218</span><span class="op">,</span> <span class="dv">112</span><span class="op">,</span> <span class="dv">214</span>]<span class="op">,</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>  <span class="dv">20</span><span class="op">,</span> <span class="dv">147</span>]<span class="op">,</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">176</span><span class="op">,</span>  <span class="dv">48</span><span class="op">,</span>  <span class="dv">96</span>]<span class="op">,</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">220</span><span class="op">,</span>  <span class="dv">20</span><span class="op">,</span>  <span class="dv">60</span>]<span class="op">,</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">240</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span>  <span class="dv">69</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">165</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">244</span><span class="op">,</span> <span class="dv">164</span><span class="op">,</span>  <span class="dv">96</span>]<span class="op">,</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">240</span><span class="op">,</span> <span class="dv">230</span><span class="op">,</span> <span class="dv">140</span>]<span class="op">,</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">139</span><span class="op">,</span>  <span class="dv">69</span><span class="op">,</span>  <span class="dv">19</span>]<span class="op">,</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">154</span><span class="op">,</span> <span class="dv">205</span><span class="op">,</span>  <span class="dv">50</span>]<span class="op">,</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">124</span><span class="op">,</span> <span class="dv">252</span><span class="op">,</span>   <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">144</span><span class="op">,</span> <span class="dv">238</span><span class="op">,</span> <span class="dv">144</span>]<span class="op">,</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">143</span><span class="op">,</span> <span class="dv">188</span><span class="op">,</span> <span class="dv">143</span>]<span class="op">,</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">34</span><span class="op">,</span> <span class="dv">139</span><span class="op">,</span>  <span class="dv">34</span>]<span class="op">,</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">127</span>]<span class="op">,</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span>]<span class="op">,</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span><span class="op">,</span> <span class="dv">139</span><span class="op">,</span> <span class="dv">139</span>]<span class="op">,</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">128</span><span class="op">,</span> <span class="dv">128</span><span class="op">,</span> <span class="dv">128</span>]<span class="op">,</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span>]]<span class="op">;</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> colors <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> last_c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> row <span class="kw">of</span> results) {</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> c <span class="op">=</span> data[last_c]<span class="op">;</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>        last_c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>        colors[row<span class="op">.</span><span class="at">repository</span>] <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Color</span>(c[<span class="dv">0</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> c[<span class="dv">1</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> c[<span class="dv">2</span>]<span class="op">/</span><span class="dv">255</span><span class="op">,</span> <span class="fl">0.9</span>)<span class="op">;</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> colors<span class="op">;</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>mutable num_records <span class="op">=</span> {</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">createShowPrimitive</span>(viewer) {</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">function</span>(movement) {</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Get the point at the mouse end position</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> selectPoint <span class="op">=</span> viewer<span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="fu">pick</span>(movement<span class="op">.</span><span class="at">endPosition</span>)<span class="op">;</span>        </span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Clear the current selection, if there is one and it is different to the selectPoint</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">!==</span> <span class="kw">null</span>) {</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>            <span class="co">//console.log(`selected.p ${viewer.currentSelection}`)</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (Cesium<span class="op">.</span><span class="fu">defined</span>(selectPoint) <span class="op">&amp;&amp;</span> selectPoint <span class="op">!==</span> viewer<span class="op">.</span><span class="at">currentSelection</span>) {</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>                <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`selected.p 2 </span><span class="sc">${</span>viewer<span class="op">.</span><span class="at">currentSelection</span><span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">pixelSize</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineColor</span> <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">TRANSPARENT</span><span class="op">;</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span><span class="op">.</span><span class="at">outlineWidth</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>                viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>        <span class="co">// If selectPoint is valid and no currently selected point</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (Cesium<span class="op">.</span><span class="fu">defined</span>(selectPoint) <span class="op">&amp;&amp;</span> selectPoint<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">"primitive"</span>)) {</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>            <span class="co">//console.log(`showPrimitiveId ${selectPoint.id}`);</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> carto <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Cartographic</span><span class="op">.</span><span class="fu">fromCartesian</span>(selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">position</span>)</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">position</span> <span class="op">=</span> selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">position</span><span class="op">;</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">show</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>            <span class="co">//viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">text</span> <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>selectPoint<span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">pixelSize</span> <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineColor</span> <span class="op">=</span> Cesium<span class="op">.</span><span class="at">Color</span><span class="op">.</span><span class="at">YELLOW</span><span class="op">;</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>            selectPoint<span class="op">.</span><span class="at">primitive</span><span class="op">.</span><span class="at">outlineWidth</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> selectPoint<span class="op">;</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>            viewer<span class="op">.</span><span class="at">pointLabel</span><span class="op">.</span><span class="at">label</span><span class="op">.</span><span class="at">show</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>        }            </span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CView {</span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span>(target) {</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Viewer</span>(</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>            target<span class="op">,</span> {</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>                <span class="dt">timeline</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>                <span class="dt">animation</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>                <span class="dt">baseLayerPicker</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>                <span class="dt">fullscreenElement</span><span class="op">:</span> target<span class="op">,</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>                <span class="dt">terrain</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">fromWorldTerrain</span>()</span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>            })<span class="op">;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">currentSelection</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">point_size</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">n_points</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>        <span class="co">// https://cesium.com/learn/cesiumjs/ref-doc/PointPrimitiveCollection.html</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">points</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">PointPrimitiveCollection</span>()<span class="op">;</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="at">primitives</span><span class="op">.</span><span class="fu">add</span>(<span class="kw">this</span><span class="op">.</span><span class="at">points</span>)<span class="op">;</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pointLabel</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">entities</span><span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> {</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>            <span class="dt">show</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showBackground</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>            <span class="dt">font</span><span class="op">:</span> <span class="st">"14px monospace"</span><span class="op">,</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>            <span class="dt">horizontalOrigin</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">HorizontalOrigin</span><span class="op">.</span><span class="at">LEFT</span><span class="op">,</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>            <span class="dt">verticalOrigin</span><span class="op">:</span> Cesium<span class="op">.</span><span class="at">VerticalOrigin</span><span class="op">.</span><span class="at">BOTTOM</span><span class="op">,</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>            <span class="dt">pixelOffset</span><span class="op">:</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">Cartesian2</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>            <span class="co">// this attribute will prevent this entity clipped by the terrain</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>            <span class="dt">disableDepthTestDistance</span><span class="op">:</span> <span class="bu">Number</span><span class="op">.</span><span class="cn">POSITIVE_INFINITY</span><span class="op">,</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>            <span class="dt">text</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pickHandler</span> <span class="op">=</span> <span class="kw">new</span> Cesium<span class="op">.</span><span class="fu">ScreenSpaceEventHandler</span>(<span class="kw">this</span><span class="op">.</span><span class="at">viewer</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="at">canvas</span>)<span class="op">;</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Can also do this rather than wait for the points to be generated</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>        <span class="co">//this.pickHandler.setInputAction(createShowPrimitive(this), Cesium.ScreenSpaceEventType.MOUSE_MOVE);</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enableTracking</span>() {</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">pickHandler</span><span class="op">.</span><span class="fu">setInputAction</span>(<span class="fu">createShowPrimitive</span>(<span class="kw">this</span>)<span class="op">,</span> Cesium<span class="op">.</span><span class="at">ScreenSpaceEventType</span><span class="op">.</span><span class="at">MOUSE_MOVE</span>)<span class="op">;</span></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> <span class="kw">new</span> <span class="fu">CView</span>(<span class="st">"cesiumContainer"</span>)<span class="op">;</span></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>viewof pointdata<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-2" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-3" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-4" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
 </div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-5" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-6" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-7" data-nodetype="declaration" class="html-fill-item html-fill-container">
 
-</main> <!-- /main -->
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-8" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-9" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-10" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-11" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<div id="ojs-cell-2-12" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div></div></div><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="ojs-auto-generated hidden bslib-grid-item html-fill-item">
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkNlc2l1bS5Jb24uZGVmYXVsdEFjY2Vzc1Rva2VuID0gJ2V5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpxZEdraU9pSXdOemszTmpreU15MWlOR0kxTFRSa04yVXRPRFJpTXkwNE9UWXdZV0UwTjJNM1pUa2lMQ0pwWkNJNk5qazFNVGNzSW1saGRDSTZNVFl6TXpVME1UUTNOMzAuZTcwZHBOek9DRFJMREd4Umd1UUNDLXRSekd6QS0yM1hnbm81bE5nQ2VCNCc7XG5cbnZpZXdvZiBwYXJxdWV0X3BhdGggPSBJbnB1dHMudGV4dCh7bGFiZWw6XCJTb3VyY2VcIiwgdmFsdWU6XCJodHRwczovL3MzLmJlZWhpdmViZWFjaC5jb20vaW1sZ3MvaW1sZ3MucGFycXVldFwiLCB3aWR0aDpcIjEwMCVcIiwgc3VibWl0OnRydWV9KTtcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIEltcG9ydCBPYnNlcnZhYmxlJ3MgbGlicmFyaWVzXG5pbXBvcnQge0R1Y2tEQkNsaWVudH0gZnJvbSBcIkBvYnNlcnZhYmxlaHEvZHVja2RiXCJcblxuLy8gQ3JlYXRlIGEgRHVja0RCIGluc3RhbmNlXG5kYiA9IER1Y2tEQkNsaWVudC5vZigpO1xuXG5cbmFzeW5jIGZ1bmN0aW9uIGxvYWREYXRhKHF1ZXJ5LCBwYXJhbXM9W10sIHdhaXRpbmdfaWQ9bnVsbCkge1xuICAgIC8vIEdldCBsb2FkaW5nIGluZGljYXRvclxuICAgIGNvbnN0IHdhaXRlciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKHdhaXRpbmdfaWQpO1xuICAgIGlmICh3YWl0ZXIpIHtcbiAgICAgICAgd2FpdGVyLmhpZGRlbiA9IGZhbHNlO1xuICAgIH1cbiAgICB0cnkge1xuICAgICAgICAvLyBSdW4gdGhlIChzbG93KSBxdWVyeVxuICAgICAgICBjb25zdCBfcmVzdWx0cyA9IGF3YWl0IGRiLnF1ZXJ5KHF1ZXJ5LCAuLi5wYXJhbXMpO1xuICAgICAgICByZXR1cm4gX3Jlc3VsdHM7XG4gICAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICAgICAgaWYgKHdhaXRlcikge1xuICAgICAgICAgICAgd2FpdGVyLmlubmVySHRtbCA9IGA8cHJlPiR7ZXJyb3J9PC9wcmU+YDtcbiAgICAgICAgfVxuICAgICAgICByZXR1cm4gbnVsbDtcbiAgICB9IGZpbmFsbHkge1xuICAgICAgICAvLyBIaWRlIHRoZSB3YWl0ZXIgKGlmIHRoZXJlIGlzIG9uZSlcbiAgICAgICAgaWYgKHdhaXRlcikge1xuICAgICAgICAgICAgd2FpdGVyLmhpZGRlbiA9IHRydWU7XG4gICAgICAgIH1cbiAgICB9XG59XG5cbmFzeW5jIGZ1bmN0aW9uIG1ha2VDb2xvcnMoKSB7XG4gICAgY29uc3QgcXVlcnkgPSBgc2VsZWN0IGRpc3RpbmN0IHJlcG9zaXRvcnkgZnJvbSByZWFkX3BhcnF1ZXQoJyR7cGFycXVldF9wYXRofScpYDtcbiAgICBjb25zdCByZXN1bHRzID0gYXdhaXQgZGIucXVlcnkocXVlcnkpO1xuICAgIGNvbnN0IGRhdGEgPSBbWzE3MywgMjE2LCAyMzBdLFxuICAgICAgICAgICAgWzAsIDE5MSwgMjU1XSxcbiAgICAgICAgICAgIFszMCwgMTQ0LCAyNTVdLFxuICAgICAgICAgICAgWzAsICAgMCwgMjU1XSxcbiAgICAgICAgICAgIFswLCAgIDAsIDEzOV0sXG4gICAgICAgICAgICBbNzIsICA2MSwgMTM5XSxcbiAgICAgICAgICAgIFsxMjMsIDEwNCwgMjM4XSxcbiAgICAgICAgICAgIFsxMzgsICA0MywgMjI2XSxcbiAgICAgICAgICAgIFsxMjgsICAgMCwgMTI4XSxcbiAgICAgICAgICAgIFsyMTgsIDExMiwgMjE0XSxcbiAgICAgICAgICAgIFsyNTUsICAgMCwgMjU1XSxcbiAgICAgICAgICAgIFsyNTUsICAyMCwgMTQ3XSxcbiAgICAgICAgICAgIFsxNzYsICA0OCwgIDk2XSxcbiAgICAgICAgICAgIFsyMjAsICAyMCwgIDYwXSxcbiAgICAgICAgICAgIFsyNDAsIDEyOCwgMTI4XSxcbiAgICAgICAgICAgIFsyNTUsICA2OSwgICAwXSxcbiAgICAgICAgICAgIFsyNTUsIDE2NSwgICAwXSxcbiAgICAgICAgICAgIFsyNDQsIDE2NCwgIDk2XSxcbiAgICAgICAgICAgIFsyNDAsIDIzMCwgMTQwXSxcbiAgICAgICAgICAgIFsxMjgsIDEyOCwgICAwXSxcbiAgICAgICAgICAgIFsxMzksICA2OSwgIDE5XSxcbiAgICAgICAgICAgIFsyNTUsIDI1NSwgICAwXSxcbiAgICAgICAgICAgIFsxNTQsIDIwNSwgIDUwXSxcbiAgICAgICAgICAgIFsxMjQsIDI1MiwgICAwXSxcbiAgICAgICAgICAgIFsxNDQsIDIzOCwgMTQ0XSxcbiAgICAgICAgICAgIFsxNDMsIDE4OCwgMTQzXSxcbiAgICAgICAgICAgIFszNCwgMTM5LCAgMzRdLFxuICAgICAgICAgICAgWzAsIDI1NSwgMTI3XSxcbiAgICAgICAgICAgIFswLCAyNTUsIDI1NV0sXG4gICAgICAgICAgICBbMCwgMTM5LCAxMzldLFxuICAgICAgICAgICAgWzEyOCwgMTI4LCAxMjhdLFxuICAgICAgICAgICAgWzI1NSwgMjU1LCAyNTVdXTtcbiAgICBjb25zdCBjb2xvcnMgPSB7fTtcbiAgICBsZXQgbGFzdF9jID0gMDtcbiAgICBmb3IgKGxldCByb3cgb2YgcmVzdWx0cykge1xuICAgICAgICBjb25zdCBjID0gZGF0YVtsYXN0X2NdO1xuICAgICAgICBsYXN0X2MgKz0gMTtcbiAgICAgICAgY29sb3JzW3Jvdy5yZXBvc2l0b3J5XSA9IG5ldyBDZXNpdW0uQ29sb3IoY1swXS8yNTUsIGNbMV0vMjU1LCBjWzJdLzI1NSwgMC45KTtcbiAgICB9XG4gICAgcmV0dXJuIGNvbG9ycztcbn1cblxubXV0YWJsZSBudW1fcmVjb3JkcyA9IHtcbiAgICByZXR1cm4gMDtcbn1cblxucG9pbnRkYXRhID0ge1xuICAgIGNvbnN0IGNvbG9ycyA9IGF3YWl0IG1ha2VDb2xvcnMoKTtcbiAgICBjb25zdCBxdWVyeSA9IGBTRUxFQ1QgcmVwb3NpdG9yeSwgaW1sZ3NfbnVtYmVyLCBpZ3NuLCBzaGlwX3BsYXRmb3JtLCBzYW1wbF9kZXZpY2UsIHBfaW52ZXN0aWdhdG9yLCBsYXRpdHVkZSwgbG9uZ2l0dWRlIEZST00gcmVhZF9wYXJxdWV0KCcke3BhcnF1ZXRfcGF0aH0nKSBXSEVSRSBsYXRpdHVkZSBpcyBub3QgbnVsbGA7XG4gICAgY29uc3QgZGF0YSA9IGF3YWl0IGxvYWREYXRhKHF1ZXJ5LCBbXSwgXCJsb2FkaW5nXzFcIik7XG4gICAgY29uc3QgZGF0YV90YWJsZSA9IElucHV0cy50YWJsZShkYXRhKTtcbiAgICBjb25zdCBzY2FsYXIgPSBuZXcgQ2VzaXVtLk5lYXJGYXJTY2FsYXIoMS41ZTIsIDMsIDguMGU2LCAwLjIpO1xuICAgIGNvbnN0IGNvbG9yID0gQ2VzaXVtLkNvbG9yLlBJTks7XG4gICAgY29uc3QgcG9pbnRfc2l6ZSA9IDQ7XG4gICAgZm9yIChjb25zdCByb3cgb2YgZGF0YSkge1xuICAgICAgICBjb250ZW50LnBvaW50cy5hZGQoe1xuICAgICAgICAgICAgaWQ6IHJvdy5pbWxnc19udW1iZXIsXG4gICAgICAgICAgICAvLyBodHRwczovL2Nlc2l1bS5jb20vbGVhcm4vY2VzaXVtanMvcmVmLWRvYy9DYXJ0ZXNpYW4zLmh0bWwjLmZyb21EZWdyZWVzXG4gICAgICAgICAgICBwb3NpdGlvbjogQ2VzaXVtLkNhcnRlc2lhbjMuZnJvbURlZ3JlZXMoXG4gICAgICAgICAgICAgICAgcm93LmxvbmdpdHVkZSwgIC8vbG9uZ2l0dWRlXG4gICAgICAgICAgICAgICAgcm93LmxhdGl0dWRlLCAgIC8vbGF0aXR1ZGVcbiAgICAgICAgICAgICAgICAwLC8vcmFuZG9tQ29vcmRpbmF0ZUppdHRlcigxMC4wLCAxMC4wKSwgLy9lbGV2YXRpb24sIG1cbiAgICAgICAgICAgICksXG4gICAgICAgICAgICBwaXhlbFNpemU6IHBvaW50X3NpemUsXG4gICAgICAgICAgICBjb2xvcjogY29sb3JzW3Jvdy5yZXBvc2l0b3J5XSxcbiAgICAgICAgICAgIHNjYWxlQnlEaXN0YW5jZTogc2NhbGFyLFxuICAgICAgICB9KTtcbiAgICB9XG4gICAgbXV0YWJsZSBudW1fcmVjb3JkcyA9IGRhdGEubGVuZ3RoO1xuICAgIGNvbnRlbnQuZW5hYmxlVHJhY2tpbmcoKTtcbiAgICByZXR1cm4gZGF0YV90YWJsZTtcbn1cbm1kYFJldHJpZXZlZCAke251bV9yZWNvcmRzfSBsb2NhdGlvbnMgZnJvbSAke3BhcnF1ZXRfcGF0aH0uYDtcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuZnVuY3Rpb24gY3JlYXRlU2hvd1ByaW1pdGl2ZSh2aWV3ZXIpIHtcbiAgICByZXR1cm4gZnVuY3Rpb24obW92ZW1lbnQpIHtcbiAgICAgICAgLy8gR2V0IHRoZSBwb2ludCBhdCB0aGUgbW91c2UgZW5kIHBvc2l0aW9uXG4gICAgICAgIGNvbnN0IHNlbGVjdFBvaW50ID0gdmlld2VyLnZpZXdlci5zY2VuZS5waWNrKG1vdmVtZW50LmVuZFBvc2l0aW9uKTsgICAgICAgIFxuXG4gICAgICAgIC8vIENsZWFyIHRoZSBjdXJyZW50IHNlbGVjdGlvbiwgaWYgdGhlcmUgaXMgb25lIGFuZCBpdCBpcyBkaWZmZXJlbnQgdG8gdGhlIHNlbGVjdFBvaW50XG4gICAgICAgIGlmICh2aWV3ZXIuY3VycmVudFNlbGVjdGlvbiAhPT0gbnVsbCkge1xuICAgICAgICAgICAgLy9jb25zb2xlLmxvZyhgc2VsZWN0ZWQucCAke3ZpZXdlci5jdXJyZW50U2VsZWN0aW9ufWApXG4gICAgICAgICAgICBpZiAoQ2VzaXVtLmRlZmluZWQoc2VsZWN0UG9pbnQpICYmIHNlbGVjdFBvaW50ICE9PSB2aWV3ZXIuY3VycmVudFNlbGVjdGlvbikge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKGBzZWxlY3RlZC5wIDIgJHt2aWV3ZXIuY3VycmVudFNlbGVjdGlvbn1gKVxuICAgICAgICAgICAgICAgIHZpZXdlci5jdXJyZW50U2VsZWN0aW9uLnByaW1pdGl2ZS5waXhlbFNpemUgPSA0O1xuICAgICAgICAgICAgICAgIHZpZXdlci5jdXJyZW50U2VsZWN0aW9uLnByaW1pdGl2ZS5vdXRsaW5lQ29sb3IgPSBDZXNpdW0uQ29sb3IuVFJBTlNQQVJFTlQ7XG4gICAgICAgICAgICAgICAgdmlld2VyLmN1cnJlbnRTZWxlY3Rpb24ub3V0bGluZVdpZHRoID0gMDtcbiAgICAgICAgICAgICAgICB2aWV3ZXIuY3VycmVudFNlbGVjdGlvbiA9IG51bGw7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAvLyBJZiBzZWxlY3RQb2ludCBpcyB2YWxpZCBhbmQgbm8gY3VycmVudGx5IHNlbGVjdGVkIHBvaW50XG4gICAgICAgIGlmIChDZXNpdW0uZGVmaW5lZChzZWxlY3RQb2ludCkgJiYgc2VsZWN0UG9pbnQuaGFzT3duUHJvcGVydHkoXCJwcmltaXRpdmVcIikpIHtcbiAgICAgICAgICAgIC8vY29uc29sZS5sb2coYHNob3dQcmltaXRpdmVJZCAke3NlbGVjdFBvaW50LmlkfWApO1xuICAgICAgICAgICAgY29uc3QgY2FydG8gPSBDZXNpdW0uQ2FydG9ncmFwaGljLmZyb21DYXJ0ZXNpYW4oc2VsZWN0UG9pbnQucHJpbWl0aXZlLnBvc2l0aW9uKVxuICAgICAgICAgICAgdmlld2VyLnBvaW50TGFiZWwucG9zaXRpb24gPSBzZWxlY3RQb2ludC5wcmltaXRpdmUucG9zaXRpb247XG4gICAgICAgICAgICB2aWV3ZXIucG9pbnRMYWJlbC5sYWJlbC5zaG93ID0gdHJ1ZTtcbiAgICAgICAgICAgIC8vdmlld2VyLnBvaW50TGFiZWwubGFiZWwudGV4dCA9IGBpZDoke3NlbGVjdFBvaW50LmlkfSwgJHtjYXJ0b31gO1xuICAgICAgICAgICAgdmlld2VyLnBvaW50TGFiZWwubGFiZWwudGV4dCA9IGAke3NlbGVjdFBvaW50LmlkfWA7XG4gICAgICAgICAgICBzZWxlY3RQb2ludC5wcmltaXRpdmUucGl4ZWxTaXplID0gMjA7XG4gICAgICAgICAgICBzZWxlY3RQb2ludC5wcmltaXRpdmUub3V0bGluZUNvbG9yID0gQ2VzaXVtLkNvbG9yLllFTExPVztcbiAgICAgICAgICAgIHNlbGVjdFBvaW50LnByaW1pdGl2ZS5vdXRsaW5lV2lkdGggPSAzO1xuICAgICAgICAgICAgdmlld2VyLmN1cnJlbnRTZWxlY3Rpb24gPSBzZWxlY3RQb2ludDtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIHZpZXdlci5wb2ludExhYmVsLmxhYmVsLnNob3cgPSBmYWxzZTtcbiAgICAgICAgfSAgICAgICAgICAgIFxuICAgIH1cbn1cblxuY2xhc3MgQ1ZpZXcge1xuICAgIGNvbnN0cnVjdG9yKHRhcmdldCkge1xuICAgICAgICB0aGlzLnZpZXdlciA9IG5ldyBDZXNpdW0uVmlld2VyKFxuICAgICAgICAgICAgdGFyZ2V0LCB7XG4gICAgICAgICAgICAgICAgdGltZWxpbmU6IGZhbHNlLFxuICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogZmFsc2UsXG4gICAgICAgICAgICAgICAgYmFzZUxheWVyUGlja2VyOiBmYWxzZSxcbiAgICAgICAgICAgICAgICBmdWxsc2NyZWVuRWxlbWVudDogdGFyZ2V0LFxuICAgICAgICAgICAgICAgIHRlcnJhaW46IENlc2l1bS5UZXJyYWluLmZyb21Xb3JsZFRlcnJhaW4oKVxuICAgICAgICAgICAgfSk7XG4gICAgICAgIHRoaXMuY3VycmVudFNlbGVjdGlvbiA9IG51bGw7XG4gICAgICAgIHRoaXMucG9pbnRfc2l6ZSA9IDE7XG4gICAgICAgIHRoaXMubl9wb2ludHMgPSAwO1xuICAgICAgICAvLyBodHRwczovL2Nlc2l1bS5jb20vbGVhcm4vY2VzaXVtanMvcmVmLWRvYy9Qb2ludFByaW1pdGl2ZUNvbGxlY3Rpb24uaHRtbFxuICAgICAgICB0aGlzLnBvaW50cyA9IG5ldyBDZXNpdW0uUG9pbnRQcmltaXRpdmVDb2xsZWN0aW9uKCk7XG4gICAgICAgIHRoaXMudmlld2VyLnNjZW5lLnByaW1pdGl2ZXMuYWRkKHRoaXMucG9pbnRzKTtcbiAgICAgXG4gICAgICAgIHRoaXMucG9pbnRMYWJlbCA9IHRoaXMudmlld2VyLmVudGl0aWVzLmFkZCh7XG4gICAgICAgICAgICBsYWJlbDoge1xuICAgICAgICAgICAgc2hvdzogZmFsc2UsXG4gICAgICAgICAgICBzaG93QmFja2dyb3VuZDogdHJ1ZSxcbiAgICAgICAgICAgIGZvbnQ6IFwiMTRweCBtb25vc3BhY2VcIixcbiAgICAgICAgICAgIGhvcml6b250YWxPcmlnaW46IENlc2l1bS5Ib3Jpem9udGFsT3JpZ2luLkxFRlQsXG4gICAgICAgICAgICB2ZXJ0aWNhbE9yaWdpbjogQ2VzaXVtLlZlcnRpY2FsT3JpZ2luLkJPVFRPTSxcbiAgICAgICAgICAgIHBpeGVsT2Zmc2V0OiBuZXcgQ2VzaXVtLkNhcnRlc2lhbjIoMTUsIDApLFxuICAgICAgICAgICAgLy8gdGhpcyBhdHRyaWJ1dGUgd2lsbCBwcmV2ZW50IHRoaXMgZW50aXR5IGNsaXBwZWQgYnkgdGhlIHRlcnJhaW5cbiAgICAgICAgICAgIGRpc2FibGVEZXB0aFRlc3REaXN0YW5jZTogTnVtYmVyLlBPU0lUSVZFX0lORklOSVRZLFxuICAgICAgICAgICAgdGV4dDpcIlwiLFxuICAgICAgICAgICAgfSxcbiAgICAgICAgfSk7XG5cbiAgICAgICAgdGhpcy5waWNrSGFuZGxlciA9IG5ldyBDZXNpdW0uU2NyZWVuU3BhY2VFdmVudEhhbmRsZXIodGhpcy52aWV3ZXIuc2NlbmUuY2FudmFzKTtcbiAgICAgICAgLy8gQ2FuIGFsc28gZG8gdGhpcyByYXRoZXIgdGhhbiB3YWl0IGZvciB0aGUgcG9pbnRzIHRvIGJlIGdlbmVyYXRlZFxuICAgICAgICAvL3RoaXMucGlja0hhbmRsZXIuc2V0SW5wdXRBY3Rpb24oY3JlYXRlU2hvd1ByaW1pdGl2ZSh0aGlzKSwgQ2VzaXVtLlNjcmVlblNwYWNlRXZlbnRUeXBlLk1PVVNFX01PVkUpO1xuICAgIH1cblxuICAgIGVuYWJsZVRyYWNraW5nKCkge1xuICAgICAgICB0aGlzLnBpY2tIYW5kbGVyLnNldElucHV0QWN0aW9uKGNyZWF0ZVNob3dQcmltaXRpdmUodGhpcyksIENlc2l1bS5TY3JlZW5TcGFjZUV2ZW50VHlwZS5NT1VTRV9NT1ZFKTtcbiAgICB9XG59XG5cbmNvbnRlbnQgPSBuZXcgQ1ZpZXcoXCJjZXNpdW1Db250YWluZXJcIik7XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3BhcnF1ZXRfcGF0aCcpIn1dfQ==
+eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7ZGF0YV9sb2FkZWR9PC9zcGFuPmAiLCAiY2VsbE5hbWUiOiJvanMtZWxlbWVudC1pZC0xIn1dfQ==
+</script>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxubXV0YWJsZSBzZWxlY3RlZF9yZXBvID0ge1xuICAgIC8vcmV0dXJuIFwiQWxmcmVkIFdlZ2VuZXIgSW5zdGl0dXRcIjtcbiAgICByZXR1cm4gbnVsbDtcbn1cblxucG9pbnRkYXRhID0ge1xuICAgIGNvbnN0IGNvbG9ycyA9IGF3YWl0IG1ha2VDb2xvcnMoKTtcbiAgICAvL2NvbnN0IHF1ZXJ5ID0gYFNFTEVDVCByZXBvc2l0b3J5LCBpbWxnc19udW1iZXIsIGlnc24sIHNoaXBfcGxhdGZvcm0sIHNhbXBsX2RldmljZSwgcF9pbnZlc3RpZ2F0b3IsIGxhdGl0dWRlLCBsb25naXR1ZGUgRlJPTSByZWFkX3BhcnF1ZXQoJyR7cGFycXVldF9wYXRofScpIFdIRVJFIGxhdGl0dWRlIGlzIG5vdCBudWxsYDtcbiAgICBjb25zdCBwYXJhbXMgPSBbXTtcbiAgICBsZXQgcXVlcnkgPSBgU0VMRUNUICogRlJPTSByZWFkX3BhcnF1ZXQoJyR7cGFycXVldF9wYXRofScpIFdIRVJFIGxhdGl0dWRlIGlzIG5vdCBudWxsYDtcbiAgICBpZiAoc2VsZWN0ZWRfcmVwbykge1xuICAgICAgICBxdWVyeSArPSBcIiBhbmQgcmVwb3NpdG9yeT0/XCI7XG4gICAgICAgIHBhcmFtcy5wdXNoKHNlbGVjdGVkX3JlcG8pO1xuICAgIH1cbiAgICBjb25zdCBkYXRhID0gYXdhaXQgbG9hZERhdGEocXVlcnksIHBhcmFtcywgXCJsb2FkaW5nXzFcIik7XG4gICAgY29uc3QgZGF0YV90YWJsZSA9IElucHV0cy50YWJsZShkYXRhLCB7cm93czogMTAwfSk7XG4gICAgY29uc3Qgc2NhbGFyID0gbmV3IENlc2l1bS5OZWFyRmFyU2NhbGFyKDEuNWUyLCAzLCA4LjBlNiwgMC4yKTtcbiAgICBjb25zdCBjb2xvciA9IENlc2l1bS5Db2xvci5QSU5LO1xuICAgIGNvbnN0IHBvaW50X3NpemUgPSA0O1xuICAgIGZvciAoY29uc3Qgcm93IG9mIGRhdGEpIHtcbiAgICAgICAgY29udGVudC5wb2ludHMuYWRkKHtcbiAgICAgICAgICAgIGlkOiByb3cuaW1sZ3NfbnVtYmVyLFxuICAgICAgICAgICAgLy8gaHR0cHM6Ly9jZXNpdW0uY29tL2xlYXJuL2Nlc2l1bWpzL3JlZi1kb2MvQ2FydGVzaWFuMy5odG1sIy5mcm9tRGVncmVlc1xuICAgICAgICAgICAgcG9zaXRpb246IENlc2l1bS5DYXJ0ZXNpYW4zLmZyb21EZWdyZWVzKFxuICAgICAgICAgICAgICAgIHJvdy5sb25naXR1ZGUsICAvL2xvbmdpdHVkZVxuICAgICAgICAgICAgICAgIHJvdy5sYXRpdHVkZSwgICAvL2xhdGl0dWRlXG4gICAgICAgICAgICAgICAgMCwvL3JhbmRvbUNvb3JkaW5hdGVKaXR0ZXIoMTAuMCwgMTAuMCksIC8vZWxldmF0aW9uLCBtXG4gICAgICAgICAgICApLFxuICAgICAgICAgICAgcGl4ZWxTaXplOiBwb2ludF9zaXplLFxuICAgICAgICAgICAgY29sb3I6IGNvbG9yc1tyb3cucmVwb3NpdG9yeV0sXG4gICAgICAgICAgICBzY2FsZUJ5RGlzdGFuY2U6IHNjYWxhcixcbiAgICAgICAgfSk7XG4gICAgfVxuICAgIG11dGFibGUgbnVtX3JlY29yZHMgPSBkYXRhLmxlbmd0aDtcbiAgICBjb250ZW50LmVuYWJsZVRyYWNraW5nKCk7XG4gICAgcmV0dXJuIGRhdGFfdGFibGU7XG59XG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkNlc2l1bS5Jb24uZGVmYXVsdEFjY2Vzc1Rva2VuID0gJ2V5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpxZEdraU9pSXdOemszTmpreU15MWlOR0kxTFRSa04yVXRPRFJpTXkwNE9UWXdZV0UwTjJNM1pUa2lMQ0pwWkNJNk5qazFNVGNzSW1saGRDSTZNVFl6TXpVME1UUTNOMzAuZTcwZHBOek9DRFJMREd4Umd1UUNDLXRSekd6QS0yM1hnbm81bE5nQ2VCNCc7XG5cbnZpZXdvZiBwYXJxdWV0X3BhdGggPSBJbnB1dHMudGV4dCh7bGFiZWw6XCJTb3VyY2VcIiwgdmFsdWU6XCJodHRwczovL3MzLmJlZWhpdmViZWFjaC5jb20vaW1sZ3MvaW1sZ3MucGFycXVldFwiLCB3aWR0aDpcIjEwMCVcIiwgc3VibWl0OnRydWV9KTtcbmRhdGFfbG9hZGVkID0ge1xuICAgIHJldHVybiBtZGBSZXRyaWV2ZWQgJHtudW1fcmVjb3Jkc30gbG9jYXRpb25zIGZyb206IFske3BhcnF1ZXRfcGF0aH1dKGh0dHBzOi8vbWFuenQuZ2l0aHViLmlvL3F1YWsvP3NvdXJjZT0ke3BhcnF1ZXRfcGF0aH0pLmA7XG59XG5cbi8vIEltcG9ydCBPYnNlcnZhYmxlJ3MgbGlicmFyaWVzXG5pbXBvcnQge0R1Y2tEQkNsaWVudH0gZnJvbSBcIkBvYnNlcnZhYmxlaHEvZHVja2RiXCJcblxuLy8gQ3JlYXRlIGEgRHVja0RCIGluc3RhbmNlXG5kYiA9IER1Y2tEQkNsaWVudC5vZigpO1xuXG5cbmFzeW5jIGZ1bmN0aW9uIGxvYWREYXRhKHF1ZXJ5LCBwYXJhbXM9W10sIHdhaXRpbmdfaWQ9bnVsbCkge1xuICAgIC8vIEdldCBsb2FkaW5nIGluZGljYXRvclxuICAgIGNvbnN0IHdhaXRlciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKHdhaXRpbmdfaWQpO1xuICAgIGlmICh3YWl0ZXIpIHtcbiAgICAgICAgd2FpdGVyLmhpZGRlbiA9IGZhbHNlO1xuICAgIH1cbiAgICB0cnkge1xuICAgICAgICAvLyBSdW4gdGhlIChzbG93KSBxdWVyeVxuICAgICAgICBjb25zb2xlLmxvZyhxdWVyeSk7XG4gICAgICAgIGNvbnNvbGUubG9nKHBhcmFtcyk7XG4gICAgICAgIC8vY29uc3QgX3Jlc3VsdHMgPSBhd2FpdCBkYi5xdWVyeShxdWVyeSwgLi4ucGFyYW1zKTtcbiAgICAgICAgY29uc3QgX3Jlc3VsdHMgPSBhd2FpdCBkYi5xdWVyeShxdWVyeSwgcGFyYW1zKTtcbiAgICAgICAgcmV0dXJuIF9yZXN1bHRzO1xuICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICAgIGlmICh3YWl0ZXIpIHtcbiAgICAgICAgICAgIHdhaXRlci5pbm5lckh0bWwgPSBgPHByZT4ke2Vycm9yfTwvcHJlPmA7XG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIG51bGw7XG4gICAgfSBmaW5hbGx5IHtcbiAgICAgICAgLy8gSGlkZSB0aGUgd2FpdGVyIChpZiB0aGVyZSBpcyBvbmUpXG4gICAgICAgIGlmICh3YWl0ZXIpIHtcbiAgICAgICAgICAgIHdhaXRlci5oaWRkZW4gPSB0cnVlO1xuICAgICAgICB9XG4gICAgfVxufVxuXG5hc3luYyBmdW5jdGlvbiBtYWtlQ29sb3JzKCkge1xuICAgIGNvbnN0IHF1ZXJ5ID0gYHNlbGVjdCBkaXN0aW5jdCByZXBvc2l0b3J5IGZyb20gcmVhZF9wYXJxdWV0KCcke3BhcnF1ZXRfcGF0aH0nKWA7XG4gICAgY29uc3QgcmVzdWx0cyA9IGF3YWl0IGRiLnF1ZXJ5KHF1ZXJ5KTtcbiAgICBjb25zdCBkYXRhID0gW1sxNzMsIDIxNiwgMjMwXSxcbiAgICAgICAgICAgIFswLCAxOTEsIDI1NV0sXG4gICAgICAgICAgICBbMzAsIDE0NCwgMjU1XSxcbiAgICAgICAgICAgIFswLCAgIDAsIDI1NV0sXG4gICAgICAgICAgICBbMCwgICAwLCAxMzldLFxuICAgICAgICAgICAgWzcyLCAgNjEsIDEzOV0sXG4gICAgICAgICAgICBbMTIzLCAxMDQsIDIzOF0sXG4gICAgICAgICAgICBbMTM4LCAgNDMsIDIyNl0sXG4gICAgICAgICAgICBbMTI4LCAgIDAsIDEyOF0sXG4gICAgICAgICAgICBbMjE4LCAxMTIsIDIxNF0sXG4gICAgICAgICAgICBbMjU1LCAgIDAsIDI1NV0sXG4gICAgICAgICAgICBbMjU1LCAgMjAsIDE0N10sXG4gICAgICAgICAgICBbMTc2LCAgNDgsICA5Nl0sXG4gICAgICAgICAgICBbMjIwLCAgMjAsICA2MF0sXG4gICAgICAgICAgICBbMjQwLCAxMjgsIDEyOF0sXG4gICAgICAgICAgICBbMjU1LCAgNjksICAgMF0sXG4gICAgICAgICAgICBbMjU1LCAxNjUsICAgMF0sXG4gICAgICAgICAgICBbMjQ0LCAxNjQsICA5Nl0sXG4gICAgICAgICAgICBbMjQwLCAyMzAsIDE0MF0sXG4gICAgICAgICAgICBbMTI4LCAxMjgsICAgMF0sXG4gICAgICAgICAgICBbMTM5LCAgNjksICAxOV0sXG4gICAgICAgICAgICBbMjU1LCAyNTUsICAgMF0sXG4gICAgICAgICAgICBbMTU0LCAyMDUsICA1MF0sXG4gICAgICAgICAgICBbMTI0LCAyNTIsICAgMF0sXG4gICAgICAgICAgICBbMTQ0LCAyMzgsIDE0NF0sXG4gICAgICAgICAgICBbMTQzLCAxODgsIDE0M10sXG4gICAgICAgICAgICBbMzQsIDEzOSwgIDM0XSxcbiAgICAgICAgICAgIFswLCAyNTUsIDEyN10sXG4gICAgICAgICAgICBbMCwgMjU1LCAyNTVdLFxuICAgICAgICAgICAgWzAsIDEzOSwgMTM5XSxcbiAgICAgICAgICAgIFsxMjgsIDEyOCwgMTI4XSxcbiAgICAgICAgICAgIFsyNTUsIDI1NSwgMjU1XV07XG4gICAgY29uc3QgY29sb3JzID0ge307XG4gICAgbGV0IGxhc3RfYyA9IDA7XG4gICAgZm9yIChsZXQgcm93IG9mIHJlc3VsdHMpIHtcbiAgICAgICAgY29uc3QgYyA9IGRhdGFbbGFzdF9jXTtcbiAgICAgICAgbGFzdF9jICs9IDE7XG4gICAgICAgIGNvbG9yc1tyb3cucmVwb3NpdG9yeV0gPSBuZXcgQ2VzaXVtLkNvbG9yKGNbMF0vMjU1LCBjWzFdLzI1NSwgY1syXS8yNTUsIDAuOSk7XG4gICAgfVxuICAgIHJldHVybiBjb2xvcnM7XG59XG5cbm11dGFibGUgbnVtX3JlY29yZHMgPSB7XG4gICAgcmV0dXJuIDA7XG59XG5cblxuZnVuY3Rpb24gY3JlYXRlU2hvd1ByaW1pdGl2ZSh2aWV3ZXIpIHtcbiAgICByZXR1cm4gZnVuY3Rpb24obW92ZW1lbnQpIHtcbiAgICAgICAgLy8gR2V0IHRoZSBwb2ludCBhdCB0aGUgbW91c2UgZW5kIHBvc2l0aW9uXG4gICAgICAgIGNvbnN0IHNlbGVjdFBvaW50ID0gdmlld2VyLnZpZXdlci5zY2VuZS5waWNrKG1vdmVtZW50LmVuZFBvc2l0aW9uKTsgICAgICAgIFxuXG4gICAgICAgIC8vIENsZWFyIHRoZSBjdXJyZW50IHNlbGVjdGlvbiwgaWYgdGhlcmUgaXMgb25lIGFuZCBpdCBpcyBkaWZmZXJlbnQgdG8gdGhlIHNlbGVjdFBvaW50XG4gICAgICAgIGlmICh2aWV3ZXIuY3VycmVudFNlbGVjdGlvbiAhPT0gbnVsbCkge1xuICAgICAgICAgICAgLy9jb25zb2xlLmxvZyhgc2VsZWN0ZWQucCAke3ZpZXdlci5jdXJyZW50U2VsZWN0aW9ufWApXG4gICAgICAgICAgICBpZiAoQ2VzaXVtLmRlZmluZWQoc2VsZWN0UG9pbnQpICYmIHNlbGVjdFBvaW50ICE9PSB2aWV3ZXIuY3VycmVudFNlbGVjdGlvbikge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKGBzZWxlY3RlZC5wIDIgJHt2aWV3ZXIuY3VycmVudFNlbGVjdGlvbn1gKVxuICAgICAgICAgICAgICAgIHZpZXdlci5jdXJyZW50U2VsZWN0aW9uLnByaW1pdGl2ZS5waXhlbFNpemUgPSA0O1xuICAgICAgICAgICAgICAgIHZpZXdlci5jdXJyZW50U2VsZWN0aW9uLnByaW1pdGl2ZS5vdXRsaW5lQ29sb3IgPSBDZXNpdW0uQ29sb3IuVFJBTlNQQVJFTlQ7XG4gICAgICAgICAgICAgICAgdmlld2VyLmN1cnJlbnRTZWxlY3Rpb24ub3V0bGluZVdpZHRoID0gMDtcbiAgICAgICAgICAgICAgICB2aWV3ZXIuY3VycmVudFNlbGVjdGlvbiA9IG51bGw7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAvLyBJZiBzZWxlY3RQb2ludCBpcyB2YWxpZCBhbmQgbm8gY3VycmVudGx5IHNlbGVjdGVkIHBvaW50XG4gICAgICAgIGlmIChDZXNpdW0uZGVmaW5lZChzZWxlY3RQb2ludCkgJiYgc2VsZWN0UG9pbnQuaGFzT3duUHJvcGVydHkoXCJwcmltaXRpdmVcIikpIHtcbiAgICAgICAgICAgIC8vY29uc29sZS5sb2coYHNob3dQcmltaXRpdmVJZCAke3NlbGVjdFBvaW50LmlkfWApO1xuICAgICAgICAgICAgY29uc3QgY2FydG8gPSBDZXNpdW0uQ2FydG9ncmFwaGljLmZyb21DYXJ0ZXNpYW4oc2VsZWN0UG9pbnQucHJpbWl0aXZlLnBvc2l0aW9uKVxuICAgICAgICAgICAgdmlld2VyLnBvaW50TGFiZWwucG9zaXRpb24gPSBzZWxlY3RQb2ludC5wcmltaXRpdmUucG9zaXRpb247XG4gICAgICAgICAgICB2aWV3ZXIucG9pbnRMYWJlbC5sYWJlbC5zaG93ID0gdHJ1ZTtcbiAgICAgICAgICAgIC8vdmlld2VyLnBvaW50TGFiZWwubGFiZWwudGV4dCA9IGBpZDoke3NlbGVjdFBvaW50LmlkfSwgJHtjYXJ0b31gO1xuICAgICAgICAgICAgdmlld2VyLnBvaW50TGFiZWwubGFiZWwudGV4dCA9IGAke3NlbGVjdFBvaW50LmlkfWA7XG4gICAgICAgICAgICBzZWxlY3RQb2ludC5wcmltaXRpdmUucGl4ZWxTaXplID0gMjA7XG4gICAgICAgICAgICBzZWxlY3RQb2ludC5wcmltaXRpdmUub3V0bGluZUNvbG9yID0gQ2VzaXVtLkNvbG9yLllFTExPVztcbiAgICAgICAgICAgIHNlbGVjdFBvaW50LnByaW1pdGl2ZS5vdXRsaW5lV2lkdGggPSAzO1xuICAgICAgICAgICAgdmlld2VyLmN1cnJlbnRTZWxlY3Rpb24gPSBzZWxlY3RQb2ludDtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIHZpZXdlci5wb2ludExhYmVsLmxhYmVsLnNob3cgPSBmYWxzZTtcbiAgICAgICAgfSAgICAgICAgICAgIFxuICAgIH1cbn1cblxuY2xhc3MgQ1ZpZXcge1xuICAgIGNvbnN0cnVjdG9yKHRhcmdldCkge1xuICAgICAgICB0aGlzLnZpZXdlciA9IG5ldyBDZXNpdW0uVmlld2VyKFxuICAgICAgICAgICAgdGFyZ2V0LCB7XG4gICAgICAgICAgICAgICAgdGltZWxpbmU6IGZhbHNlLFxuICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogZmFsc2UsXG4gICAgICAgICAgICAgICAgYmFzZUxheWVyUGlja2VyOiBmYWxzZSxcbiAgICAgICAgICAgICAgICBmdWxsc2NyZWVuRWxlbWVudDogdGFyZ2V0LFxuICAgICAgICAgICAgICAgIHRlcnJhaW46IENlc2l1bS5UZXJyYWluLmZyb21Xb3JsZFRlcnJhaW4oKVxuICAgICAgICAgICAgfSk7XG4gICAgICAgIHRoaXMuY3VycmVudFNlbGVjdGlvbiA9IG51bGw7XG4gICAgICAgIHRoaXMucG9pbnRfc2l6ZSA9IDE7XG4gICAgICAgIHRoaXMubl9wb2ludHMgPSAwO1xuICAgICAgICAvLyBodHRwczovL2Nlc2l1bS5jb20vbGVhcm4vY2VzaXVtanMvcmVmLWRvYy9Qb2ludFByaW1pdGl2ZUNvbGxlY3Rpb24uaHRtbFxuICAgICAgICB0aGlzLnBvaW50cyA9IG5ldyBDZXNpdW0uUG9pbnRQcmltaXRpdmVDb2xsZWN0aW9uKCk7XG4gICAgICAgIHRoaXMudmlld2VyLnNjZW5lLnByaW1pdGl2ZXMuYWRkKHRoaXMucG9pbnRzKTtcbiAgICAgXG4gICAgICAgIHRoaXMucG9pbnRMYWJlbCA9IHRoaXMudmlld2VyLmVudGl0aWVzLmFkZCh7XG4gICAgICAgICAgICBsYWJlbDoge1xuICAgICAgICAgICAgc2hvdzogZmFsc2UsXG4gICAgICAgICAgICBzaG93QmFja2dyb3VuZDogdHJ1ZSxcbiAgICAgICAgICAgIGZvbnQ6IFwiMTRweCBtb25vc3BhY2VcIixcbiAgICAgICAgICAgIGhvcml6b250YWxPcmlnaW46IENlc2l1bS5Ib3Jpem9udGFsT3JpZ2luLkxFRlQsXG4gICAgICAgICAgICB2ZXJ0aWNhbE9yaWdpbjogQ2VzaXVtLlZlcnRpY2FsT3JpZ2luLkJPVFRPTSxcbiAgICAgICAgICAgIHBpeGVsT2Zmc2V0OiBuZXcgQ2VzaXVtLkNhcnRlc2lhbjIoMTUsIDApLFxuICAgICAgICAgICAgLy8gdGhpcyBhdHRyaWJ1dGUgd2lsbCBwcmV2ZW50IHRoaXMgZW50aXR5IGNsaXBwZWQgYnkgdGhlIHRlcnJhaW5cbiAgICAgICAgICAgIGRpc2FibGVEZXB0aFRlc3REaXN0YW5jZTogTnVtYmVyLlBPU0lUSVZFX0lORklOSVRZLFxuICAgICAgICAgICAgdGV4dDpcIlwiLFxuICAgICAgICAgICAgfSxcbiAgICAgICAgfSk7XG5cbiAgICAgICAgdGhpcy5waWNrSGFuZGxlciA9IG5ldyBDZXNpdW0uU2NyZWVuU3BhY2VFdmVudEhhbmRsZXIodGhpcy52aWV3ZXIuc2NlbmUuY2FudmFzKTtcbiAgICAgICAgLy8gQ2FuIGFsc28gZG8gdGhpcyByYXRoZXIgdGhhbiB3YWl0IGZvciB0aGUgcG9pbnRzIHRvIGJlIGdlbmVyYXRlZFxuICAgICAgICAvL3RoaXMucGlja0hhbmRsZXIuc2V0SW5wdXRBY3Rpb24oY3JlYXRlU2hvd1ByaW1pdGl2ZSh0aGlzKSwgQ2VzaXVtLlNjcmVlblNwYWNlRXZlbnRUeXBlLk1PVVNFX01PVkUpO1xuICAgIH1cblxuICAgIGVuYWJsZVRyYWNraW5nKCkge1xuICAgICAgICB0aGlzLnBpY2tIYW5kbGVyLnNldElucHV0QWN0aW9uKGNyZWF0ZVNob3dQcmltaXRpdmUodGhpcyksIENlc2l1bS5TY3JlZW5TcGFjZUV2ZW50VHlwZS5NT1VTRV9NT1ZFKTtcbiAgICB9XG59XG5cbmNvbnRlbnQgPSBuZXcgQ1ZpZXcoXCJjZXNpdW1Db250YWluZXJcIik7XG5cbnZpZXdvZiBwb2ludGRhdGE7XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3BhcnF1ZXRfcGF0aCcpIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -866,6 +932,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
 
 
 
