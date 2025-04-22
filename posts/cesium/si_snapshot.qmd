@@ -297,7 +297,8 @@ async function getRecords(idx) {
         mutable selected_h3 = [];
     }
     console.log(`Looking for record ${idx}...`);
-    const q = `select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3=${idx.toString()}`;
+    const h3 = idx.split("|")[0];
+    const q = `select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3=${h3}`;
     const result = db.query(q);
     mutable selected_h3 = await result;
     console.log("Donel")
