@@ -1,66 +1,113 @@
 ---
-title: Exploring IMLGS
+title: Exploring SI Occurrences
 format: 
-    dashboard:
-        expandable: false
+    html:
+        page-layout: full
 ---
 
-This page renders points from a static parquet snapshot of [Index to Marine And Lacustrine Geological Samples (IMLGS)](https://www.ncei.noaa.gov/products/index-marine-lacustrine-samples) data.
+This page renders content from a static snapshot of Smithinsonian Institution occurrence records retrieved from GBIF on 2025-04-22. The data was converted to parquet and of the approximately 10 million records, there are about 480,000 distinct locations which are shown on the map. Each point represents between 1 and several thousand occurrence records. Clicking on a point will show an excerpt of the records in a table below the map.
 
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Cesium.js"></script>
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Widgets/widgets.css" rel="stylesheet"></link>
+
 <style>
     div.cesium-topleft {
         display: block;
         position: absolute;
-        background: #00000099;
-        color: white;
+        background-color: #00000080;
+        color: black;
         height: auto;
         z-index: 999;
         font-size: 10px;        
     }
     #cesiumContainer {
-        aspect-ratio: 1/1;
+        height: 800px;    
     }
 </style>
 
 ${data_loaded}
 
 
-## Row {.tabset}
+```{ojs}
+//| echo: false
+//| 
+// css: aspect-ratio: 1/1;
+duckdb = import("https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm/+esm");
 
-### Table
+async function instantiate(duckdb) {
+
+  const CDN_BUNDLES = duckdb.getJsDelivrBundles(),
+  bundle = await duckdb.selectBundle(CDN_BUNDLES), // Select a bundle based on browser checks
+  worker_url = URL.createObjectURL(
+    new Blob([ `importScripts("${bundle.mainWorker}");` ], {
+      type: "text/javascript"
+    })
+  );
+
+  // Instantiate the async version of DuckDB-WASM
+  const worker = new Worker(worker_url),
+  logger = new duckdb.ConsoleLogger("DEBUG"),
+  db = new duckdb.AsyncDuckDB(logger, worker);
+
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+  URL.revokeObjectURL(worker_url);
+
+  return db;
+}
+
+DuckDB = await instantiate(duckdb);
+db = {
+    const db = await DuckDB.connect();
+    const parquet_path = "https://s3.beehivebeach.com/smithsonian/occurrence.parquet";
+    let q = `install h3 from community;`
+    await db.query(q);
+    q = 'load h3;';
+    await db.query(q);
+    q = `create view occurrence as select * from read_parquet('${parquet_path}')`;
+    await db.query(q);
+    return db;q
+}
+
+```
 
 ```{ojs}
 //| padding: 0px
 //| echo: false
 //| scrolling: true
 
-mutable selected_repo = {
-    //return "Alfred Wegener Institut";
-    return null;
+mutable data_loaded = "Loading...";
+
+mutable num_points = 0;
+
+colors = {
+    const c = [
+        Cesium.Color.CYAN,
+        Cesium.Color.GOLDENROD,
+        Cesium.Color.GOLD,
+        Cesium.Color.HOTPINK,
+        Cesium.Color.RED,
+    ]
+    return c;
 }
 
-recorddata = {
-    const params = [];
-    let query = `SELECT * FROM read_parquet('${parquet_path}') WHERE latitude is not null`;
-    if (selected_repo) {
-        query += " and repository=?";
-        params.push(selected_repo);
+num_records = {
+    const results = await db.query("select count(*) as n from occurrence");
+    for (const row of results) {
+        return row.n;
     }
-    return await loadData(query, params, "loading_1");
 }
 
 pointdata = {
-    const colors = await makeColors();
-    //const query = `SELECT repository, imlgs_number, igsn, ship_platform, sampl_device, p_investigator, latitude, longitude FROM read_parquet('${parquet_path}') WHERE latitude is not null`;
-    const data_table = Inputs.table(recorddata, {rows: 100});
+    //const colors = await makeColors();
+    const query = `SELECT h3, h3_cell_to_lat(h3) as latitude, h3_cell_to_lng(h3) as longitude, cast(log(count(*)) as integer) as n from occurrence where h3 is not null group by h3`;
+    const recorddata = await db.query(query);
     const scalar = new Cesium.NearFarScalar(1.5e2, 3, 8.0e6, 0.2);
     const color = Cesium.Color.PINK;
     const point_size = 4;
+    let nrecs = 0;
     for (const row of recorddata) {
         const pp = content.points.add({
-            id: row.imlgs_number,
+            id: row.h3,
             // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
             position: Cesium.Cartesian3.fromDegrees(
                 row.longitude,  //longitude
@@ -68,134 +115,31 @@ pointdata = {
                 0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
             ),
             pixelSize: point_size,
-            color: colors[row.repository],
+            color: colors[row.n],
+            //color: Cesium.Color.PINK,
             scaleByDistance: scalar,
         });
-    }
-    mutable num_records = recorddata.length;
-    content.enableTracking();
-    return data_table;
-}
-
-async function getRecord(pid) {
-    const query = `SELECT imlgs_number, igsn, repository, ship_platform, cruiseid, sampleid, sampl_device FROM read_parquet('${parquet_path}') WHERE imlgs_number=?`;
-    const row = await db.queryRow(query, [pid]);
-    if (row) {
-        return {
-            "IMLGS": row.imlgs_number,
-            "IGSN": row.igsn,
-            "Repository": row.repository,
-            "Platform": row.ship_platform,
-            "CruiseId": row.cruiseid,
-            "SampleId": row.sampleid,
-            "Device": row.sampl_device
+        nrecs += 1;
+        if (nrecs % 10000 === 0) {
+            mutable data_loaded = `Loaded ${nrecs} locations.`;                
         }
     }
-    return {};
-};
+    mutable num_points = nrecs;
+    mutable data_loaded = `Loaded ${nrecs} locations.`;
+    content.enableTracking();
+    return recorddata;
+}
+
 
 ```
 
-### Map
-
-<div id="loading_1">Loading...</div>
 <div id="cesiumContainer"></div>
 
 ```{ojs}
 //| title: Map
-//| echo: false
 //| output: false
+//| echo: false
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwNzk3NjkyMy1iNGI1LTRkN2UtODRiMy04OTYwYWE0N2M3ZTkiLCJpZCI6Njk1MTcsImlhdCI6MTYzMzU0MTQ3N30.e70dpNzOCDRLDGxRguQCC-tRzGzA-23Xgno5lNgCeB4';
-
-viewof parquet_path = Inputs.text({label:"Source", value:"https://s3.beehivebeach.com/imlgs/imlgs.parquet", width:"100%", submit:true});
-data_loaded = {
-    if (num_records === 0) {
-        return "Loading ...";
-    }
-    return md`Retrieved ${num_records} locations from: [${parquet_path}](https://manzt.github.io/quak/?source=${parquet_path}).`;
-}
-
-// Import Observable's libraries
-import {DuckDBClient} from "@observablehq/duckdb"
-
-// Create a DuckDB instance
-db = DuckDBClient.of();
-
-
-async function loadData(query, params=[], waiting_id=null) {
-    // Get loading indicator
-    const waiter = document.getElementById(waiting_id);
-    if (waiter) {
-        waiter.hidden = false;
-    }
-    try {
-        // Run the (slow) query
-        console.log(query);
-        console.log(params);
-        //const _results = await db.query(query, ...params);
-        const _results = await db.query(query, params);
-        return _results;
-    } catch (error) {
-        if (waiter) {
-            waiter.innerHtml = `<pre>${error}</pre>`;
-        }
-        return null;
-    } finally {
-        // Hide the waiter (if there is one)
-        if (waiter) {
-            waiter.hidden = true;
-        }
-    }
-}
-
-async function makeColors() {
-    const query = `select distinct repository from read_parquet('${parquet_path}')`;
-    const results = await db.query(query);
-    const data = [[173, 216, 230],
-            [0, 191, 255],
-            [30, 144, 255],
-            [0,   0, 255],
-            [0,   0, 139],
-            [72,  61, 139],
-            [123, 104, 238],
-            [138,  43, 226],
-            [128,   0, 128],
-            [218, 112, 214],
-            [255,   0, 255],
-            [255,  20, 147],
-            [176,  48,  96],
-            [220,  20,  60],
-            [240, 128, 128],
-            [255,  69,   0],
-            [255, 165,   0],
-            [244, 164,  96],
-            [240, 230, 140],
-            [128, 128,   0],
-            [139,  69,  19],
-            [255, 255,   0],
-            [154, 205,  50],
-            [124, 252,   0],
-            [144, 238, 144],
-            [143, 188, 143],
-            [34, 139,  34],
-            [0, 255, 127],
-            [0, 255, 255],
-            [0, 139, 139],
-            [128, 128, 128],
-            [255, 255, 255]];
-    const colors = {};
-    let last_c = 0;
-    for (let row of results) {
-        const c = data[last_c];
-        last_c += 1;
-        colors[row.repository] = new Cesium.Color(c[0]/255, c[1]/255, c[2]/255, 0.9);
-    }
-    return colors;
-}
-
-mutable num_records = {
-    return 0;
-}
 
 class Overlay {
     constructor(target, width="140px") {
@@ -244,7 +188,7 @@ function createShowPrimitive(viewer) {
         if (viewer.currentSelection !== null) {
             //console.log(`selected.p ${viewer.currentSelection}`)
             if (Cesium.defined(selectPoint) && selectPoint !== viewer.currentSelection) {
-                console.log(`selected.p 2 ${viewer.currentSelection}`)
+                //console.log(`selected.p 2 ${viewer.currentSelection}`)
                 viewer.currentSelection.primitive.pixelSize = 4;
                 viewer.currentSelection.primitive.outlineColor = Cesium.Color.TRANSPARENT;
                 viewer.currentSelection.outlineWidth = 0;
@@ -330,11 +274,15 @@ class CView {
         this.selectHandler.setInputAction(async (e) => {
             const selectPoint = this.viewer.scene.pick(e.position);
             if (Cesium.defined(selectPoint) && selectPoint.hasOwnProperty("primitive")) {
-                this.overlay.update(await getRecord(selectPoint.id));
+                //this.overlay.update(await getRecord(selectPoint.id));
+                console.log(`Selected h3=${selectPoint.id}`);
+                getRecords(selectPoint.id);
             } else {
-                this.overlay.update(await getRecord(null));
+                //this.overlay.update(await getRecord(null));
+                getRecords(null);
             }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);        
+        
     }
 
     enableTracking() {
@@ -342,8 +290,30 @@ class CView {
     }
 }
 
+
+async function getRecords(idx) {
+    if (idx === null) {
+        mutable selected_h3 = [];
+    }
+    console.log(`Looking for record ${idx}...`);
+    const q = `select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3=${idx.toString()}`;
+    const result = db.query(q);
+    mutable selected_h3 = await result;
+    console.log("Donel")
+}
+
 content = new CView("cesiumContainer");
 
-pointdata;
+mutable selected_h3 = [];
+
 ```
 
+Selected ${selectedRecords.length} records.
+```{ojs}
+//| echo: false
+viewof selectedRecords = Inputs.table(selected_h3, {
+    format: {
+        occurrenceID: d => htl.html`<a href='${d}' target='_blank'>${d}</a>`
+    }
+});
+```
