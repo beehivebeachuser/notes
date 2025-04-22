@@ -21,7 +21,7 @@ This page renders content from a static snapshot of Smithinsonian Institution oc
         font-size: 10px;        
     }
     #cesiumContainer {
-        height: 800px;    
+        aspect-ratio: 1.618;    
     }
 </style>
 
@@ -99,7 +99,7 @@ num_records = {
 
 pointdata = {
     //const colors = await makeColors();
-    const query = `SELECT h3, h3_cell_to_lat(h3) as latitude, h3_cell_to_lng(h3) as longitude, cast(log(count(*)) as integer) as n from occurrence where h3 is not null group by h3`;
+    const query = `SELECT h3, h3_cell_to_lat(h3) as latitude, h3_cell_to_lng(h3) as longitude, cast(count(*) as integer) as n from occurrence where h3 is not null group by h3`;
     const recorddata = await db.query(query);
     const scalar = new Cesium.NearFarScalar(1.5e2, 3, 8.0e6, 0.2);
     const color = Cesium.Color.PINK;
@@ -107,7 +107,7 @@ pointdata = {
     let nrecs = 0;
     for (const row of recorddata) {
         const pp = content.points.add({
-            id: row.h3,
+            id: `${row.h3}|${row.n}`,
             // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
             position: Cesium.Cartesian3.fromDegrees(
                 row.longitude,  //longitude
@@ -115,7 +115,7 @@ pointdata = {
                 0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
             ),
             pixelSize: point_size,
-            color: colors[row.n],
+            color: colors[Math.round(Math.log10(row.n))],
             //color: Cesium.Color.PINK,
             scaleByDistance: scalar,
         });
@@ -203,7 +203,8 @@ function createShowPrimitive(viewer) {
             viewer.pointLabel.position = selectPoint.primitive.position;
             viewer.pointLabel.label.show = true;
             //viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;
-            viewer.pointLabel.label.text = `${selectPoint.id}`;
+            const label = `n:${selectPoint.id.split("|")[1]}`;
+            viewer.pointLabel.label.text = `${label}`;
             selectPoint.primitive.pixelSize = 20;
             selectPoint.primitive.outlineColor = Cesium.Color.YELLOW;
             selectPoint.primitive.outlineWidth = 3;
