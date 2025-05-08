@@ -1,0 +1,159 @@
+---
+title: "Setting up Python on OS X"
+subtitle: "Works for me."
+categories: [recipe, python]
+date: 2025-05-08
+---
+
+Some notes on setting up python for development on OS X. The general pattern applies to Linux as well.
+
+## Initial Setup
+
+Install `homebrew`
+
+```bash
+brew install coreutils
+brew install direnv
+brew install uv
+brew install ruff
+```
+
+::: {.column-margin}
+Keep this installed with brew up to date with `brew upgrade`.
+:::
+
+Add the following to start of `~/.zprofile`:
+
+```bash
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(direnv hook zsh)"
+```
+
+Add the following to `~/.zshrc`:
+
+```bash
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+```
+
+Restart the shell.
+
+Install the desired pythons:
+
+```bash
+uv python install 3.11
+uv python install 3.14
+```
+
+Add the script [`uv-python-symlink`](https://github.com/willkg/dotfiles/blob/main/dotfiles/bin/uv-python-symlink) to `~/.local/bin`. This helps with creating and managing symlinks to the `uv` installed python versions.
+
+Run `uv-python-symlink`:
+
+```bash
+$ ./uv-python-symlink 
+/Users/vieglais/.local/bin/python3.11 created.
+/Users/vieglais/.local/bin/python3.14 created.
+/Users/vieglais/.local/bin/python created.
+```
+
+::: {.callout-note}
+Although tempting, it's generally not a good idea to use `brew` installed python unless working specifically on brew apps (e.g. QGIS)[^1].
+:::
+
+I use [`direnv`](https://direnv.net/) to assist with context management on the cli. There's plenty of other tools ([`mise`](https://mise.jdx.dev/) seems pretty good), I just started using `direnv` a while back and have had no reason to change. To set things up for typical python projects (with a `pyproject.toml` in the project root):
+
+Create a file `~/.config/direnv/lib/python_helpers.sh`:
+
+```bash
+function use_venv() {
+    # re-use a virtualenv in the .venv folder if it's already there
+    uv venv --allow-existing .venv
+    # Activate that venv
+    source .venv/bin/activate
+    # Report the setup
+    echo "Activated $(grealpath -s --relative-to=. $(which python)) $(python --version)"
+}
+
+function use_standard-python() {
+    # https://direnv.net/man/direnv-stdlib.1.html#codesourceupifexists-ltfilenamegtcode
+    source_up_if_exists
+    # https://direnv.net/man/direnv-stdlib.1.html#codedotenvifexists-ltdotenvpathgtcode
+    dotenv_if_exists
+    # https://direnv.net/man/direnv-stdlib.1.html#codesourceenvifexists-ltfilenamegtcode
+    source_env_if_exists .envrc.local
+    use venv
+    uv sync ${UV_SYNC_OPTS}
+}
+```
+
+In project folders that have python dependency, add a file `.envrc` with the contents:
+
+```bash
+# Install all package "extra" dependencies
+export UV_SYNC_OPTS="--all-extras"
+# Activate the python virtual environment, creating if necessary
+use standard-python
+# Optionally add the local package pacth to the PYTHONPATH
+# export PYTHONPATH="${pwd}:${PYTHONPATH}"
+```
+
+Then when cd'ing to the project folder, the environment will be setup to use that local python virtual environment. 
+
+::: {.callout-note}
+After editing `.envrc` it is necessary to run `direnv allow` to flag the changes as valid.
+:::
+
+## Migrating from poetry
+
+In the project folder, this has worked in all cases so far:
+
+```bash
+uvx migrate-to-uv
+```
+
+## Git hooks
+
+Install:
+
+```
+uv tool install pre-commit
+```
+
+To upgrade:
+
+```
+uv tool upgrade pre-commit
+```
+
+Config with a file `.pre-commit-config.yaml`
+
+
+## Linters and stuff
+
+[`ruff`](https://docs.astral.sh/ruff/) is much faster than `black` or `pylint`. Add it as a pre-commit, e.g.:
+
+`.pre-commit-config.yaml`:
+
+```yaml
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.11.0
+  hooks:
+    # Run the linter.
+    - id: ruff
+      types_or: [ python, pyi ]
+      args: [ --fix ]
+    # Run the formatter.
+    - id: ruff-format
+      types_or: [ python, pyi ]
+```
+
+
+[^1]: [pydevtools.com/handbook/explanation/should-i-use-homebrew-to-install-python/](https://pydevtools.com/handbook/explanation/should-i-use-homebrew-to-install-python/)
