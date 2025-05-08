@@ -7,8 +7,15 @@ This page shows a cesium view with 1,000,000 randomly generated points displayed
 
 Although terrain is shown, the points are not adjusted with terrain height. There is an option to compute the height of points using sampleTerrainMostDetailed, however that should only be used when the results can be preserved since it is fairly slow (generally a couple seconds per batch of 1000).
 
+The points use the [PointPrimitive class](https://cesium.com/learn/ion-sdk/ref-doc/PointPrimitive.html) and so have limited properties available. With such a large number of points, the properties per point is very limited. Operations for aggregation, selection, grouping, etc should be based on the `id` or`position` attributes and access the records separately (e.g. using duckdb).
+
+```{=html}
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Cesium.js"></script>
+```
+
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Widgets/widgets.css" rel="stylesheet"></link>
+
+```{=html}
 <style>
     div.cesium-topleft {
         display: block;
@@ -22,7 +29,9 @@ Although terrain is shown, the points are not adjusted with terrain height. Ther
         aspect-ratio: 1/1;
     }
 </style>
+```
 
+````{=html}
 <!--
 ```{ojs}
 message = {
@@ -30,8 +39,10 @@ message = {
 }
 ```
 -->
-<div id="cesiumContainer"></div>
+````
 
+::: {#cesiumContainer}
+:::
 
 ```{ojs}
 //| output: false
@@ -45,40 +56,50 @@ function randomCoordinateJitter(degree, margin) {
 }
 
 async function sleep(ms=500) {
-        return new PromiseRejectionEvent(resolve => setTimeout(resolve, ms));
+        return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
 
 function createShowPrimitive(viewer) {
     return function(movement) {
         // Get the point at the mouse end position
-        const selectPoint = viewer.viewer.scene.pick(movement.endPosition);        
-
-        // Clear the current selection, if there is one and it is different to the selectPoint
-        if (viewer.currentSelection !== null) {
-            //console.log(`selected.p ${viewer.currentSelection}`)
-            if (Cesium.defined(selectPoint) && selectPoint !== viewer.currentSelection) {
-                console.log(`selected.p 2 ${viewer.currentSelection}`)
+        const selectPoint = viewer.viewer.scene.pick(movement.endPosition);
+        let is_a_point = false;
+        if (Cesium.defined(selectPoint)) {
+            is_a_point = (selectPoint.primitive instanceof Cesium.PointPrimitive);            
+        }
+        // if it is a point, then we may need to do something
+        if (is_a_point) {
+            // if the selected point is the same as current selection, then do nothing
+            if (selectPoint !== viewer.currentSelection) {
+                // If the selected is different to the previous then clear the previous
+                if (viewer.currentSelection !== null) {
+                    viewer.pointLabel.label.show = false;
+                    viewer.currentSelection.primitive.pixelSize = 4;
+                    viewer.currentSelection.primitive.outlineColor = Cesium.Color.TRANSPARENT;
+                    viewer.currentSelection.outlineWidth = 0;
+                    viewer.currentSelection = null;
+                }
+                // show the selection
+                const carto = Cesium.Cartographic.fromCartesian(selectPoint.primitive.position)
+                viewer.pointLabel.position = selectPoint.primitive.position;
+                viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;
+                selectPoint.primitive.pixelSize = 20;
+                selectPoint.primitive.outlineColor = Cesium.Color.YELLOW;
+                selectPoint.primitive.outlineWidth = 3;
+                viewer.currentSelection = selectPoint;
+                viewer.pointLabel.label.show = true;
+            }
+        } else {
+            // if no point was selected, then clear the previous
+            if (viewer.currentSelection !== null) {
+                viewer.pointLabel.label.show = false;
                 viewer.currentSelection.primitive.pixelSize = 4;
                 viewer.currentSelection.primitive.outlineColor = Cesium.Color.TRANSPARENT;
                 viewer.currentSelection.outlineWidth = 0;
                 viewer.currentSelection = null;
             }
         }
-
-        // If selectPoint is valid and no currently selected point
-        if (Cesium.defined(selectPoint) && selectPoint.hasOwnProperty("primitive")) {
-            //console.log(`showPrimitiveId ${selectPoint.id}`);
-            const carto = Cesium.Cartographic.fromCartesian(selectPoint.primitive.position)
-            viewer.pointLabel.position = selectPoint.primitive.position;
-            viewer.pointLabel.label.show = true;
-            viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;
-            selectPoint.primitive.pixelSize = 20;
-            selectPoint.primitive.outlineColor = Cesium.Color.YELLOW;
-            selectPoint.primitive.outlineWidth = 3;
-            viewer.currentSelection = selectPoint;
-        } else {
-            viewer.pointLabel.label.show = false;
-        }            
     }
 }
 
@@ -193,28 +214,45 @@ class CView {
     }
 
     async generatePoints(n_points=1000, point_size=4) {
+
+        async function generatePointsBatch(container, n=1000) {
+            for (let i = 0; i < n; i++) {
+                let color = Cesium.Color.PINK;
+                if ((i % 2) === 0) {
+                    color = Cesium.Color.CYAN;
+                }
+                container.points.add({
+                    id: i,
+                    // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
+                    position: Cesium.Cartesian3.fromDegrees(
+                        randomCoordinateJitter(0.0, 180.0),  //longitude
+                        randomCoordinateJitter(0.0, 90.0),   //latitude
+                        0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
+                    ),
+                    pixelSize: container.point_size,
+                    color: color,
+                    scaleByDistance: scalar,
+                    heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+                });
+            }
+        }
+
         this.n_points = n_points;
         this.point_size = point_size;
         // https://cesium.com/learn/ion-sdk/ref-doc/NearFarScalar.html
         const scalar = new Cesium.NearFarScalar(1.5e2, 2, 8.0e6, 0.2);
-        for (var i = 0; i < this.n_points; i++) {
-            let color = Cesium.Color.PINK;
-            if ((i % 2) === 0) {
-                color = Cesium.Color.CYAN;
+        let i = 0;
+        let batch_size = 50000;
+        if (this.n_points < batch_size) {
+            batch_size = this.n_points;
+        }
+        while (i < this.n_points) {
+            if (this.n_points - i < batch_size) {
+                batch_size = this.n_points - i;
             }
-            this.points.add({
-                id: i,
-                // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
-                position: Cesium.Cartesian3.fromDegrees(
-                    randomCoordinateJitter(0.0, 180.0),  //longitude
-                    randomCoordinateJitter(0.0, 90.0),   //latitude
-                    0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
-                ),
-                pixelSize: this.point_size,
-                color: color,
-                scaleByDistance: scalar,
-                heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-            });
+            generatePointsBatch(this, batch_size);
+            i += batch_size;
+            //await sleep(1);
         }
     }
 

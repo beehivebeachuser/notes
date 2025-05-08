@@ -65,15 +65,37 @@ db = {
     await db.query(q);
     q = `create view occurrence as select * from read_parquet('${parquet_path}')`;
     await db.query(q);
-    return db;q
+    return db;
 }
 
+/*
+async function dbquery(q, params=[]) {
+    const cn = await DuckDB.connect();
+    const query = cn.prepare(q);
+    const results = query.query(...params);
+    cn.close();
+    return results;
+}
+
+async function* dbqueryGenerator(q, params=[]) {
+    const cn = await DuckDB.connect();
+    const query = cn.prepare(q);
+    for await (const batch of await query.send(...params)) {
+        for (const row of batch) {
+            yield row.toJSON();
+        }
+    }
+    cn.close();
+} 
+*/
 ```
 
 ```{ojs}
 //| padding: 0px
 //| echo: false
 //| scrolling: true
+
+h3 = require("h3-js");
 
 mutable data_loaded = "Loading...";
 
@@ -106,30 +128,34 @@ pointdata = {
     const point_size = 4;
     let nrecs = 0;
     for (const row of recorddata) {
-        const pp = content.points.add({
-            id: `${row.h3}|${row.n}`,
-            // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
-            position: Cesium.Cartesian3.fromDegrees(
-                row.longitude,  //longitude
-                row.latitude,   //latitude
-                0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
-            ),
-            pixelSize: point_size,
-            color: colors[Math.round(Math.log10(row.n))],
-            //color: Cesium.Color.PINK,
-            scaleByDistance: scalar,
-        });
-        nrecs += 1;
-        if (nrecs % 10000 === 0) {
-            mutable data_loaded = `Loaded ${nrecs} locations.`;                
-        }
-    }
+    //const recorddata = await db.send(query);
+    //for await (const batch of (recorddata)) {
+        //console.log(`Batch ${batch.length}`);
+        //for (const row of batch) {
+            content.points.add({
+                id: `${row.h3}|${row.n}`,
+                // https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html#.fromDegrees
+                position: Cesium.Cartesian3.fromDegrees(
+                    row.longitude,  //longitude
+                    row.latitude,   //latitude
+                    0,//randomCoordinateJitter(10.0, 10.0), //elevation, m
+                ),
+                pixelSize: point_size,
+                color: colors[Math.round(Math.log10(row.n))],
+                //color: Cesium.Color.PINK,
+                scaleByDistance: scalar,
+            });
+            nrecs += 1;
+            if (nrecs % 30000 === 0) {
+                mutable data_loaded = `Loaded ${nrecs} locations.`;                
+            }
+        }    
+    //}
     mutable num_points = nrecs;
     mutable data_loaded = `Loaded ${nrecs} locations.`;
     content.enableTracking();
-    return recorddata;
+    return null;
 }
-
 
 ```
 
@@ -203,19 +229,17 @@ function createShowPrimitive(viewer) {
             viewer.pointLabel.position = selectPoint.primitive.position;
             viewer.pointLabel.label.show = true;
             //viewer.pointLabel.label.text = `id:${selectPoint.id}, ${carto}`;
-            const label = `n:${selectPoint.id.split("|")[1]}`;
-            viewer.pointLabel.label.text = `${label}`;
-            selectPoint.primitive.pixelSize = 20;
-            selectPoint.primitive.outlineColor = Cesium.Color.YELLOW;
-            selectPoint.primitive.outlineWidth = 3;
-            viewer.currentSelection = selectPoint;
-            //don't do this:
-            //getRecord(selectPoint.id).then((data) => {
-            //    viewer.overlay.update(data);
-            //})
-            //or this:
-            //viewer.overlay.update(await getRecord(selectPoint.id));
-            // They are too slow. Either create a timeout for de-bouncing or use a click event.
+            try {
+                const label = `n:${selectPoint.id.split("|")[1]}`;
+                viewer.pointLabel.label.text = `${label}`;
+                selectPoint.primitive.pixelSize = 20;
+                selectPoint.primitive.outlineColor = Cesium.Color.YELLOW;
+                selectPoint.primitive.outlineWidth = 3;
+                viewer.currentSelection = selectPoint;
+            } catch {
+                viewer.currentSelection = null;
+                viewer.pointLabel.label.show = false;
+            }
         } else {
             viewer.pointLabel.label.show = false;
         }
@@ -297,8 +321,22 @@ async function getRecords(idx) {
         mutable selected_h3 = [];
     }
     console.log(`Looking for record ${idx}...`);
-    const h3 = idx.split("|")[0];
-    const q = `select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3=${h3}`;
+    const h3cell = BigInt(idx.split("|")[0]);
+    const h3cellhex = h3cell.toString(16);
+    const resolution = h3.getResolution(h3cellhex);
+    console.log(`resolution = ${resolution}`);
+    const h3s = h3.cellToChildren(h3.cellToParent(h3cellhex, resolution-1), resolution);
+    console.log(`h3 = ${h3s}`);
+    const h3ints = [];
+    for (const h of h3s) {
+        h3ints.push(`h3=${BigInt('0x'+h)}`);
+    }
+    console.log(h3ints.join((" or ")));
+    //const q = db.prepare(`select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3 in ?`);
+    //console.log(q);
+    //const result = q.query(h3s);
+    const q = `select occurrenceID, institutionCode, collectionCode, catalogNumber,  family, genus, species, eventDate from occurrence where h3=${h3cell}`;
+    console.log(q);
     const result = db.query(q);
     mutable selected_h3 = await result;
     console.log("Donel")
