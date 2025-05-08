@@ -3,7 +3,7 @@ title: Driveway Surfacing
 subtitle: How much gravel do I need?
 author: Beehive Beach
 date: "2022-04-02"
-categories: [living, infrastructure]
+categories: [living, land]
 reference-location: margin
 format:
   html:

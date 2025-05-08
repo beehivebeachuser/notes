@@ -1,1 +1,40 @@
 /*-- scss:defaults --*/
+$font-family-sans-serif: 'Crimson Text','Crimson Temp:Georgia';
+$font-family-monospace: 'Roboto Mono', monospace;
+$font-size-root:         20px;
+$headings-font-weight:  400 !default;
+
+/*-- scss:rules --*/
+body {
+    -webkit-font-smoothing: auto;
+    text-size-adjust: 100%;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+
+pre, code {
+    font-size: 0.7rem;
+    color: inherit;
+}
+
+pre code {
+    font-size: 0.7rem;
+}
+
+a {
+    color: inherit;
+    text-decoration-thickness: 0.05em;
+}
+
+.quarto-title-meta {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.7rem;
+}
+
+.quarto-title-banner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -3,7 +3,7 @@ title: Catching Rain
 author: Beehive Beach
 subtitle: How much roof area do I need to supply my house?
 date: "2022-11-01"
-categories: [living, rainwater]
+categories: [living, water]
 reference-location: margin
 jupyter: python3
 format:
