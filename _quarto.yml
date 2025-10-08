@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: dist
+  output-dir: _site
   render:
     - "*.qmd"
     - "!ignored"
