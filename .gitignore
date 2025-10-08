@@ -3,3 +3,4 @@
 uv.lock
 
 **/*.quarto_ipynb
+/_site/
