@@ -3,6 +3,7 @@ title: "Setting up Python on OS X"
 subtitle: "Works for me."
 categories: [recipe, python]
 date: 2025-05-08
+date-modified: 2025-10-08
 ---
 
 Some notes on setting up python for development on OS X. The general pattern applies to Linux as well.
@@ -19,17 +20,19 @@ brew install ruff
 ```
 
 ::: {.column-margin}
-Keep this installed with brew up to date with `brew upgrade`.
+Keep brew installed components up to date with `brew upgrade`.
 :::
 
-Add the following to start of `~/.zprofile`:
+Add the following to start of `~/.zprofile`. These commands enable 
+[`direnv`](https://direnv.net/) which can be used to set environment variables based on 
+the current folder context.
 
 ```bash
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(direnv hook zsh)"
 ```
 
-Add the following to `~/.zshrc`:
+Add the following to `~/.zshrc` to enable shell completion support for `uv`:
 
 ```bash
 eval "$(uv generate-shell-completion zsh)"
@@ -38,14 +41,16 @@ eval "$(uvx --generate-shell-completion zsh)"
 
 Restart the shell.
 
-Install the desired pythons:
+Install the desired pythons, for example:
 
 ```bash
 uv python install 3.11
 uv python install 3.14
 ```
 
-Add the script [`uv-python-symlink`](https://github.com/willkg/dotfiles/blob/main/dotfiles/bin/uv-python-symlink) to `~/.local/bin`. This helps with creating and managing symlinks to the `uv` installed python versions.
+Add the script [`uv-python-symlink`](https://github.com/willkg/dotfiles/blob/main/dotfiles/bin/uv-python-symlink) 
+to `~/.local/bin`. This helps with creating and managing symlinks to the `uv` 
+installed python versions.
 
 Run `uv-python-symlink`:
 
@@ -57,23 +62,36 @@ $ ./uv-python-symlink
 ```
 
 ::: {.callout-note}
-Although tempting, it's generally not a good idea to use `brew` installed python unless working specifically on brew apps (e.g. QGIS)[^1].
+Although tempting, it's generally not a good idea to use `brew` installed python unless 
+working specifically on brew apps (e.g. QGIS)[^1].
 :::
 
-I use [`direnv`](https://direnv.net/) to assist with context management on the cli. There's plenty of other tools ([`mise`](https://mise.jdx.dev/) seems pretty good), I just started using `direnv` a while back and have had no reason to change. To set things up for typical python projects (with a `pyproject.toml` in the project root):
+I use [`direnv`](https://direnv.net/) to assist with context management on the cli. 
+There's plenty of other tools ([`mise`](https://mise.jdx.dev/) seems pretty good), I 
+just started using `direnv` a while back and have had no reason to change. To set 
+things up for typical python projects (with a `pyproject.toml` in the project root):
 
 Create a file `~/.config/direnv/lib/python_helpers.sh`:
 
 ```bash
+##
+# use venv
 function use_venv() {
-    # re-use a virtualenv in the .venv folder if it's already there
+    # Create or reuse and existing .venv
     uv venv --allow-existing .venv
-    # Activate that venv
+    # Activate the virtual environment
     source .venv/bin/activate
     # Report the setup
     echo "Activated $(grealpath -s --relative-to=. $(which python)) $(python --version)"
 }
 
+##
+# use standard-python
+# 1. Loads another .envrc if found searching folders upward
+# 2. Loads environemnt variables from .env if found
+# 3. Loads .envrc.local if present, can be used to override other settings from 1 and 2
+# 4. Call use_venv() to activate a local python environment
+# 5. Run uv sync to install python project dependencies
 function use_standard-python() {
     # https://direnv.net/man/direnv-stdlib.1.html#codesourceupifexists-ltfilenamegtcode
     source_up_if_exists
@@ -84,6 +102,18 @@ function use_standard-python() {
     use venv
     uv sync ${UV_SYNC_OPTS}
 }
+
+##
+# use local-python
+# Same as use_standard-python but does not run uv sync
+# Use this for a generic venv or if not wanting to auto install dependencies
+function use_local-python() {
+    # Same as use_standard-python but just for local venv, not projects 
+    source_up_if_exists
+    dotenv_if_exists
+    source_env_if_exists .envrc.local
+    use venv
+}
 ```
 
 In project folders that have python dependency, add a file `.envrc` with the contents:
@@ -93,15 +123,29 @@ In project folders that have python dependency, add a file `.envrc` with the con
 export UV_SYNC_OPTS="--all-extras"
 # Activate the python virtual environment, creating if necessary
 use standard-python
-# Optionally add the local package pacth to the PYTHONPATH
+# Optionally add the local package path to the PYTHONPATH
 # export PYTHONPATH="${pwd}:${PYTHONPATH}"
 ```
 
-Then when cd'ing to the project folder, the environment will be setup to use that local python virtual environment. 
+Then when cd'ing to the project folder, the environment will be setup to use that local 
+python virtual environment. 
 
 ::: {.callout-note}
 After editing `.envrc` it is necessary to run `direnv allow` to flag the changes as valid.
 :::
+
+## Using a specific python version
+
+The environment variable `UV_PYTHON` acts the same as the `--python` command-line 
+argument to `uv`. Set this in the folder `.env`, `.envrc`, or `.envrc.local` to use a 
+specific version of python in a project. Or set it manually, e.g.:
+
+```
+export UV_PYTHON=3.12
+```
+
+See also: https://docs.astral.sh/uv/reference/environment/
+
 
 ## Migrating from poetry
 
@@ -154,6 +198,18 @@ repos:
     - id: ruff-format
       types_or: [ python, pyi ]
 ```
+
+## Python project cookie cutter
+
+Cookie cutter can be used to streamline scaffolding a new python project.
+
+e.g.:
+
+```
+cookiecutter https://github.com/datadavev/cookiecutter-python.git
+```
+
+Which is forked from `bosd` and tweaked a little for my preferences.
 
 
 [^1]: [pydevtools.com/handbook/explanation/should-i-use-homebrew-to-install-python/](https://pydevtools.com/handbook/explanation/should-i-use-homebrew-to-install-python/)

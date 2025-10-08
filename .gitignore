@@ -1,3 +1,5 @@
 .DS_Store
 /.quarto/
 uv.lock
+
+**/*.quarto_ipynb
