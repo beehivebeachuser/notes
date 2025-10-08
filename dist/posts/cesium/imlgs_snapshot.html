@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-517513f5a2bcdbfd1b1023e3fc9cca9c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-388f8d67df6149ff0c4f0d88f9153ee2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-517513f5a2bcdbfd1b1023e3fc9cca9c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd4e4562af9062d9f200841793bf5c06.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-42da390b1251f2a7a621bc99940f6342.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd4e4562af9062d9f200841793bf5c06.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ba772f4c84244b194a6c9b279547abac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ba772f4c84244b194a6c9b279547abac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-ba772f4c84244b194a6c9b279547abac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-41395fe64f2f9b09eddf437d954ed45a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-41395fe64f2f9b09eddf437d954ed45a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-41395fe64f2f9b09eddf437d954ed45a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
 <script src="../../site_libs/quarto-dashboard/stickythead.js"></script>
 
@@ -129,7 +130,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </button>    
 
 
-    <div class="navbar-brand-container">       
+    <div class="navbar-brand-container">
+
 
       <div class="navbar-title">
         <div class="navbar-title-text"><a href="#">Exploring IMLGS</a></div>
@@ -177,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 grid-auto-rows: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container" style="padding: 0px;">
-<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb1" data-startfrom="39" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 38;"><span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>mutable selected_repo <span class="op">=</span> {</span>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb1" data-startfrom="39" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 38;"><span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>mutable selected_repo <span class="op">=</span> {</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">//return "Alfred Wegener Institut";</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -233,7 +235,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {}<span class="op">;</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display html-fill-item html-fill-container">
 <div class="html-fill-item html-fill-container">
 <div id="ojs-cell-1-1" data-nodetype="declaration" class="html-fill-item html-fill-container">
@@ -278,7 +280,7 @@ Loading…
 </div>
 </div>
 <script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="cell hidden html-fill-item html-fill-container" title="Map">
-<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb2" data-startfrom="108" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>Cesium<span class="op">.</span><span class="at">Ion</span><span class="op">.</span><span class="at">defaultAccessToken</span> <span class="op">=</span> <span class="st">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwNzk3NjkyMy1iNGI1LTRkN2UtODRiMy04OTYwYWE0N2M3ZTkiLCJpZCI6Njk1MTcsImlhdCI6MTYzMzU0MTQ3N30.e70dpNzOCDRLDGxRguQCC-tRzGzA-23Xgno5lNgCeB4'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb2" data-startfrom="108" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>Cesium<span class="op">.</span><span class="at">Ion</span><span class="op">.</span><span class="at">defaultAccessToken</span> <span class="op">=</span> <span class="st">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwNzk3NjkyMy1iNGI1LTRkN2UtODRiMy04OTYwYWE0N2M3ZTkiLCJpZCI6Njk1MTcsImlhdCI6MTYzMzU0MTQ3N30.e70dpNzOCDRLDGxRguQCC-tRzGzA-23Xgno5lNgCeB4'</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
 <div class="html-fill-item html-fill-container">
 <div id="ojs-cell-2-1" data-nodetype="expression" class="html-fill-item html-fill-container">
@@ -286,7 +288,7 @@ Loading…
 </div>
 </div>
 </div>
-<div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb3" data-startfrom="110" data-source-offset="-217"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>viewof parquet_path <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span><span class="st">"Source"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span><span class="st">"https://s3.beehivebeach.com/imlgs/imlgs.parquet"</span><span class="op">,</span> <span class="dt">width</span><span class="op">:</span><span class="st">"100%"</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span><span class="kw">true</span>})<span class="op">;</span></span>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb3" data-startfrom="110" data-source-offset="-217"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>viewof parquet_path <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span><span class="st">"Source"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span><span class="st">"https://s3.beehivebeach.com/imlgs/imlgs.parquet"</span><span class="op">,</span> <span class="dt">width</span><span class="op">:</span><span class="st">"100%"</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span><span class="kw">true</span>})<span class="op">;</span></span>
 <span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>data_loaded <span class="op">=</span> {</span>
 <span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (num_records <span class="op">===</span> <span class="dv">0</span>) {</span>
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Loading ..."</span><span class="op">;</span></span>
@@ -523,7 +525,7 @@ Loading…
 <span id="cb3-344"><a href="#cb3-344" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> <span class="kw">new</span> <span class="fu">CView</span>(<span class="st">"cesiumContainer"</span>)<span class="op">;</span></span>
 <span id="cb3-346"><a href="#cb3-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a>pointdata<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a>pointdata<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
 <div class="html-fill-item html-fill-container">
 <div id="ojs-cell-2-2" data-nodetype="declaration" class="html-fill-item html-fill-container">
@@ -683,13 +685,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
