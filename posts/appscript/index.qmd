@@ -5,7 +5,7 @@ categories: [recipe, appscript, google]
 date: 2025-12-01
 ---
 
-A recent task was to convert a google Sheet that contained rich text in some cells into a Google Doc. Headings were contained in one column, with optional tags and annotations in other columns, followed by another column containing the body. The bdy often had text that was formatted in various ways such as foreground color, bold, italic, hyperlinks, and so forth.
+A recent task was to convert a Google Sheet that contained rich text in some cells into a Google Doc. Headings were contained in one column, with optional tags and annotations in other columns, followed by another column containing the body. The bdy often had text that was formatted in various ways such as foreground color, bold, italic, hyperlinks, and so forth.
 
 Here's the script. The source data was in the range `A2:E203`.
 
