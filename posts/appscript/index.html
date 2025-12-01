@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>A recent task was to convert a google Sheet that contained rich text in some cells into a Google Doc. Headings were contained in one column, with optional tags and annotations in other columns, followed by another column containing the body. The bdy often had text that was formatted in various ways such as foreground color, bold, italic, hyperlinks, and so forth.</p>
+<p>A recent task was to convert a Google Sheet that contained rich text in some cells into a Google Doc. Headings were contained in one column, with optional tags and annotations in other columns, followed by another column containing the body. The bdy often had text that was formatted in various ways such as foreground color, bold, italic, hyperlinks, and so forth.</p>
 <p>Here’s the script. The source data was in the range <code>A2:E203</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/beehivebeachuser\.github\.io\/notes\/");
+        var filterRegex = new RegExp("https:\/\/notes\.beehivebeach\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
