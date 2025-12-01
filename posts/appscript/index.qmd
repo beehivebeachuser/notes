@@ -1,0 +1,79 @@
+---
+title: "Rich Text Sheet to Doc"
+subtitle: "Quickie for making a formatted doc from a sheet containing rich text."
+categories: [recipe, appscript, google]
+date: 2025-12-01
+---
+
+A recent task was to convert a google Sheet that contained rich text in some cells into a Google Doc. Headings were contained in one column, with optional tags and annotations in other columns, followed by another column containing the body. The bdy often had text that was formatted in various ways such as foreground color, bold, italic, hyperlinks, and so forth.
+
+Here's the script. The source data was in the range `A2:E203`.
+
+```javascript
+
+/**
+ * Set the rich text content of a paragraph from the value of a sheet cell.
+ */
+function setRichText(cell, para) {
+  const richTextValue = cell.getRichTextValue();
+  if (!richTextValue) {
+    // Set plain text if no rich text formatting
+    para.appendText(cell.getValue());
+    return; 
+  }
+  const runs = richTextValue.getRuns();
+  runs.forEach(run => {
+    const text = run.getText();
+    if (text.length > 0) {
+      const style = run.getTextStyle();
+      const link = run.getLinkUrl();
+      let txt = para.appendText(text);
+      if (link) {
+        txt.setLinkUrl(link);
+      }
+      txt.setBold(style.isBold());
+      txt.setItalic(style.isItalic());
+      txt.setForegroundColor(style.getForegroundColor());
+      txt.setStrikethrough(style.isStrikethrough());
+      txt.setUnderline(style.isUnderline());
+    }
+  });
+}
+
+/**
+ * Create a google doc from this sheet.
+ * 
+ * Headings are created from Column B.
+ * Body is from Column E.
+ * Column D content, if any, is added as an annotation before the body.
+ */
+function myFunction() {
+  const documentUrl = "https://docs.google.com/document/d/DOC_ID/edit";
+  docBody = DocumentApp.openByUrl(documentUrl);
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const startCell = sheet.getRange("A2");
+  const nrows = 202;
+  //const nrows = 10;
+  for (let r=0; r < nrows; r++) {
+    let dow = startCell.offset(r, 0).getValue();
+    let dt = startCell.offset(r, 1).getValue();
+    let tags = startCell.offset(r, 2).getValue().trim();
+    let evid = startCell.offset(r, 3).getValue().trim();
+    Logger.log(`${dow} ${dt}`);
+    let h = docBody.appendParagraph(`${dow} ${dt}`.trim());
+    h.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+    if (tags.length > 0) {
+      docBody.appendParagraph(`Tags: ${tags}`);
+    }
+    if (evid.length > 0) {
+      docBody.appendParagraph(`Source: ${evid}`);
+    }
+    // Get a paragraph object by appending a blank para, then
+    // set the formatted content by peeking at the rich text run styles.
+    let para = docBody.appendParagraph("");
+    setRichText(startCell.offset(r, 4), para);
+  }
+}
+```
+
+Worked for me.
